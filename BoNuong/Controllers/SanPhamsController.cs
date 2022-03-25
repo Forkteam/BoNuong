@@ -7,6 +7,8 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using BoNuong.Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
 
 namespace BoNuong.Controllers
 {
@@ -32,6 +34,11 @@ namespace BoNuong.Controllers
             if (sanPham == null)
             {
                 return HttpNotFound();
+            }
+            foreach (var i in sanPham.BinhLuan)
+            {
+                ApplicationUser user = System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>().FindById(i.MaKH);
+                i.Name = user.Name;
             }
             return View(sanPham);
         }

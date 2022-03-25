@@ -23,5 +23,7 @@ namespace BoNuong.Models
         public DateTime? NgayTao { get; set; }
 
         public virtual SanPham SanPham { get; set; }
+
+        public string Name;
     }
 }

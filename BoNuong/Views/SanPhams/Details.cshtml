@@ -77,6 +77,53 @@
 
     </dl>
 </div>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <div class="container mt-5">
+                <div class="row d-flex justify-content-center">
+                    <div class="col-md-8">
+                        <strong>Bình Luận</strong>
+                        <div class="card p-3">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="user d-flex flex-row align-items-center">
+                                    <textarea rows="3" cols="98" style="resize:none;border:none;" placeholder="Hãy để lại cảm nghĩ của bạn về món ăn này nhé!"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <button style="margin: 5px; " class="btn btn-success pull-right">Đăng</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+@foreach (var item in Model.BinhLuan)
+{
+    <div class="container mt-5">
+        <div class="row d-flex justify-content-center">
+            <div class="col-md-8">
+                <div class="card p-3">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="user d-flex flex-row align-items-center">
+                            <img src="https://i.imgur.com/hczKIze.jpg" width="30" class="user-img rounded-circle mr-2">
+                            <span>
+                                <small style="font-size: 16px;" class="font-weight-bold text-primary">@Html.DisplayFor(hoten => item.Name)</small>
+                            </span>
+                        </div> <small style="font-size: 14px;"> @Html.DisplayFor(ngaytao => item.NgayTao)</small>
+                    </div>
+                    <div class="action d-flex justify-content-between mt-2 align-items-center">
+                        <div class="reply px-4"> <small style="font-size: 14px;min-width:100vw;">@Html.DisplayFor(noidung => item.NoiDung)</small> <span class="dots"></span>  </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.MaSP }) |
     @Html.ActionLink("Back to List", "Index")

@@ -7,6 +7,8 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using BoNuong.Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
 
 namespace BoNuong.Controllers
 {
@@ -50,15 +52,22 @@ namespace BoNuong.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "MaBinhLuan,NoiDung,MaSP,MaKH,NgayTao")] BinhLuan binhLuan)
         {
-            if (ModelState.IsValid)
+            // khong xet valid MaKH vi bang user dang nhap
+            ModelState.Remove("MaKH");
+            if (!ModelState.IsValid)
             {
-                db.BinhLuan.Add(binhLuan);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                ViewBag.MaSP = new SelectList(db.SanPham, "MaSP", "Ten", binhLuan.MaSP);
+                return View(binhLuan);
             }
 
-            ViewBag.MaSP = new SelectList(db.SanPham, "MaSP", "Ten", binhLuan.MaSP);
-            return View(binhLuan);
+            // lay login user id
+            ApplicationUser user = System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>().FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
+            binhLuan.MaKH = user.Id;
+
+            binhLuan.NgayTao = DateTime.Now;
+            db.BinhLuan.Add(binhLuan);
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
 
         // GET: BinhLuans/Edit/5

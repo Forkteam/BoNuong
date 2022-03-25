@@ -20,10 +20,32 @@ namespace BoNuong.Controllers
             return View();
         }
 
+        public ActionResult Blog()
+        {
+            return View();
+        }
+        public ActionResult Blogdetails()
+        {
+            return View();
+        }
+        public ActionResult Checkout()
+        {
+            return View();
+        }
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
-
+            return View();
+        }
+        public ActionResult Shopdetails()
+        {
+            return View();
+        }
+        public ActionResult Shopgrid()
+        {
+            return View();
+        }
+        public ActionResult Shopcart()
+        {
             return View();
         }
     }
