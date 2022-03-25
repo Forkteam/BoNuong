@@ -5,126 +5,265 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
-
-<div>
-    <h4>SanPham</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.LoaiSP.TenLoai)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.LoaiSP.TenLoai)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Ten)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Ten)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.MoTa)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.MoTa)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Gia)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Gia)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.SoLuong)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.SoLuong)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DonVi)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DonVi)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.GiamGia)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.GiamGia)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Hinh)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Hinh)
-        </dd>
-
-    </dl>
-</div>
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-
-    <div class="form-horizontal">
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            <div class="container mt-5">
-                <div class="row d-flex justify-content-center">
-                    <div class="col-md-8">
-                        <strong>Bình Luận</strong>
-                        <div class="card p-3">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="user d-flex flex-row align-items-center">
-                                    <textarea rows="3" cols="98" style="resize:none;border:none;" placeholder="Hãy để lại cảm nghĩ của bạn về món ăn này nhé!"></textarea>
+<!-- Breadcrumb Section Begin -->
+<section class="breadcrumb-section set-bg" data-setbg="/Content/img/breadcrumb.jpg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="breadcrumb__text">
+                    <h2>Chi tiết sản phẩm</h2>
+                    <div class="breadcrumb__option">
+                        <a href="/">Trang chủ</a>
+                        <a href="/Sanphams">Sản phẩm</a>
+                        <span>Chi tiết</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Breadcrumb Section End -->
+<!-- Product Details Section Begin -->
+<section class="product-details spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-6">
+                <div class="product__details__pic">
+                    <div class="product__details__pic__item">
+                        <img class="product__details__pic__item--large"
+                             src="/Content/img/product/details/product-details-1.jpg" alt="">
+                    </div>
+                    @*<div class="product__details__pic__slider owl-carousel">
+                            <img data-imgbigurl="/Content/img/product/details/product-details-2.jpg"
+                                 src="/Content/img/product/details/thumb-1.jpg" alt="">
+                            <img data-imgbigurl="/Content/img/product/details/product-details-3.jpg"
+                                 src="/Content/img/product/details/thumb-2.jpg" alt="">
+                            <img data-imgbigurl="/Content/img/product/details/product-details-5.jpg"
+                                 src="/Content/img/product/details/thumb-3.jpg" alt="">
+                            <img data-imgbigurl="/Content/img/product/details/product-details-4.jpg"
+                                 src="/Content/img/product/details/thumb-4.jpg" alt="">
+                        </div>*@
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6">
+                <div class="product__details__text">
+                    <h3 style="font-size:30px">@Html.DisplayFor(model => model.Ten)</h3>
+                    <div class="product__details__rating">
+                        @*<i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star-half-o"></i>*@
+                        <span>(18 reviews)</span>
+                    </div>
+                    <div class="product__details__price">Giá: @Html.DisplayFor(model => model.Gia) VNĐ</div>
+                    <div style="font-size:18px">Giảm giá: @Html.DisplayFor(model => model.GiamGia) VNĐ</div>
+                    <div style="font-size:18px">@Html.DisplayFor(model => model.MoTa)</div>
+                    <div style="font-size:18px">Số lượng còn lại: @Html.DisplayFor(model => model.SoLuong)</div>
+                    <div style="font-size:18px">Đơn vị tính: @Html.DisplayFor(model => model.DonVi)</div>
+                    <div style="font-size:18px">Loại sản phẩm: @Html.DisplayFor(model => model.LoaiSP.TenLoai)</div>
+                    @*Them trang thai cho mon an*@
+                    @*<div class="product__details__quantity">
+            <div class="quantity">
+                <div class="pro-qty">
+                    <input type="text" value="1">
+                </div>
+            </div>
+        </div>*@
+                    <a href="#" class="primary-btn" style="margin-top:20px">Thêm vào giỏ hàng</a>
+                    @*<a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>*@
+                    @*<ul>
+            <li>
+                <b>Chia sẻ</b>
+                <div class="share">
+                    <a href="#"><i class="fa fa-facebook"></i></a>
+                    <a href="#"><i class="fa fa-twitter"></i></a>
+                    <a href="#"><i class="fa fa-instagram"></i></a>
+                    <a href="#"><i class="fa fa-pinterest"></i></a>
+                </div>
+            </li>
+        </ul>*@
+                </div>
+            </div>
+            <div class="col-lg-12">
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="form-horizontal">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            <div class="container mt-5">
+                                <div class="row d-flex justify-content-center">
+                                    <div class="col-md-8">
+                                        <strong>Bình Luận</strong>
+                                        <div class="card p-3">
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <div class="user d-flex flex-row align-items-center">
+                                                    <textarea rows="3" cols="98" style="resize:none;border:none;" placeholder="Hãy để lại cảm nghĩ của bạn về món ăn này nhé!"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button style="margin: 5px; " class="btn btn-success pull-right">Đăng</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <button style="margin: 5px; " class="btn btn-success pull-right">Đăng</button>
+                    </div>
+                }
+                @foreach (var item in Model.BinhLuan)
+                {
+                    <div class="container mt-5">
+                        <div class="row d-flex justify-content-center">
+                            <div class="col-md-8">
+                                <div class="card p-3">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="user d-flex flex-row align-items-center">
+                                            <img src="https://i.imgur.com/hczKIze.jpg" width="30" class="user-img rounded-circle mr-2">
+                                            <span>
+                                                <small style="font-size: 16px;" class="font-weight-bold text-primary">@Html.DisplayFor(hoten => item.Name)</small>
+                                            </span>
+                                        </div> <small style="font-size: 14px;"> @Html.DisplayFor(ngaytao => item.NgayTao)</small>
+                                    </div>
+                                    <div class="action d-flex justify-content-between mt-2 align-items-center">
+                                        <div class="reply px-4"> <small style="font-size: 14px;min-width:100vw;">@Html.DisplayFor(noidung => item.NoiDung)</small> <span class="dots"></span>  </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+                @*<div class="product__details__tab">
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab"
+                               aria-selected="true">Đánh giá</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab"
+                               aria-selected="false">Thông tin</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#tabs-3" role="tab"
+                               aria-selected="false">Nhận xét <span>(1)</span></a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="tabs-1" role="tabpanel">
+                            <div class="product__details__tab__desc">
+                                <h6>Products Infomation</h6>
+
+                                <i class="fa fa-star"></i>
+
+
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="tabs-2" role="tabpanel">
+                            <div class="product__details__tab__desc">
+                                <h6>Thông tin sản phẩm</h6>
+                                <p>
+                                    <h5>Tên loại sản phẩm: </h5>@Html.DisplayFor(model => model.LoaiSP.TenLoai)
+                                </p>
+
+
+                                <p>
+
+                                    <h5>Tên sản phẩm: </h5>@Html.DisplayFor(model => model.Ten)
+                                </p>
+
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="tabs-3" role="tabpanel">
+                            <div class="product__details__tab__desc">
+                                <h6>Nhận xét của khách hàng</h6>
+                                <p>
+                                    Rất ngon
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>*@
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Product Details Section End -->
+<!-- Related Product Section Begin -->
+<section class="related-product">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-title related__product__title">
+                    <h2>Sản phẩm liên quan</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="product__item">
+                    <div class="product__item__pic set-bg" data-setbg="/Content/img/product/product-1.jpg">
+                        <ul class="product__item__pic__hover">
+                            <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                            <li><a href="#"><i class="fa fa-retweet"></i></a></li>
+                            <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                        </ul>
+                    </div>
+                    <div class="product__item__text">
+                        <h6><a href="#">Crab Pool Security</a></h6>
+                        <h5>$30.00</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="product__item">
+                    <div class="product__item__pic set-bg" data-setbg="/Content/img/product/product-2.jpg">
+                        <ul class="product__item__pic__hover">
+                            <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                            <li><a href="#"><i class="fa fa-retweet"></i></a></li>
+                            <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                        </ul>
+                    </div>
+                    <div class="product__item__text">
+                        <h6><a href="#">Crab Pool Security</a></h6>
+                        <h5>$30.00</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="product__item">
+                    <div class="product__item__pic set-bg" data-setbg="/Content/img/product/product-3.jpg">
+                        <ul class="product__item__pic__hover">
+                            <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                            <li><a href="#"><i class="fa fa-retweet"></i></a></li>
+                            <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                        </ul>
+                    </div>
+                    <div class="product__item__text">
+                        <h6><a href="#">Crab Pool Security</a></h6>
+                        <h5>$30.00</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="product__item">
+                    <div class="product__item__pic set-bg" data-setbg="/Content/img/product/product-7.jpg">
+                        <ul class="product__item__pic__hover">
+                            <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                            <li><a href="#"><i class="fa fa-retweet"></i></a></li>
+                            <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                        </ul>
+                    </div>
+                    <div class="product__item__text">
+                        <h6><a href="#">Crab Pool Security</a></h6>
+                        <h5>$30.00</h5>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-}
-@foreach (var item in Model.BinhLuan)
-{
-    <div class="container mt-5">
-        <div class="row d-flex justify-content-center">
-            <div class="col-md-8">
-                <div class="card p-3">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div class="user d-flex flex-row align-items-center">
-                            <img src="https://i.imgur.com/hczKIze.jpg" width="30" class="user-img rounded-circle mr-2">
-                            <span>
-                                <small style="font-size: 16px;" class="font-weight-bold text-primary">@Html.DisplayFor(hoten => item.Name)</small>
-                            </span>
-                        </div> <small style="font-size: 14px;"> @Html.DisplayFor(ngaytao => item.NgayTao)</small>
-                    </div>
-                    <div class="action d-flex justify-content-between mt-2 align-items-center">
-                        <div class="reply px-4"> <small style="font-size: 14px;min-width:100vw;">@Html.DisplayFor(noidung => item.NoiDung)</small> <span class="dots"></span>  </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-}
-<p>
+</section>
+<!-- Related Product Section End -->
+
+@*<p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.MaSP }) |
     @Html.ActionLink("Back to List", "Index")
-</p>
+</p>*@
