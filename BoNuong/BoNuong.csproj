@@ -179,6 +179,7 @@
     <Compile Include="Controllers\BinhLuansController.cs" />
     <Compile Include="Controllers\ChiTietDonHangsController.cs" />
     <Compile Include="Controllers\DonHangsController.cs" />
+    <Compile Include="Controllers\GioHangController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoaiSPsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -191,6 +192,7 @@
     <Compile Include="Models\BoNuongContext.cs" />
     <Compile Include="Models\ChiTietDonHang.cs" />
     <Compile Include="Models\DonHang.cs" />
+    <Compile Include="Models\GioHang.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\LoaiSP.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -472,6 +474,7 @@
     <Content Include="Views\Home\Shopcart.cshtml" />
     <Content Include="Views\Home\Shopdetails.cshtml" />
     <Content Include="Views\Home\Shopgrid.cshtml" />
+    <Content Include="Views\GioHang\GioHang.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
