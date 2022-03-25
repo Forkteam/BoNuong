@@ -1,0 +1,95 @@
+﻿@model IEnumerable<BoNuong.Models.GioHang>
+@{
+    ViewBag.Title = "GioHang";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!-- Breadcrumb Section Begin -->
+<section class="breadcrumb-section set-bg" data-setbg="/Content/img/breadcrumb.jpg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="breadcrumb__text">
+                    <h2>Giỏ hàng</h2>
+                    <div class="breadcrumb__option">
+                        <a href="./index.html">Trang chủ</a>
+                        <span>Giỏ hàng</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="shoping-cart spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="shoping__cart__table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.MaSP)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Ten)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Hinh)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Gia)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.GiamGia)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.SoLuong)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.ThanhTien)
+                                </th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                            <tr>
+                                <td>@Html.DisplayFor(modelItem => item.MaSP)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Ten)</td>
+
+                                <td><img src="@item.Hinh" width="200" /></td>
+
+                                @using (Html.BeginForm("CapNhatGioHang", "GioHang", new { @id = item.MaSP }))
+                                {
+                                    <td>@String.Format("{0:0,0}", item.Gia) VNĐ</td>
+                                    <td>@Html.DisplayFor(modelItem => item.SoLuong)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.ThanhTien)</td>
+                                }
+
+                                <td>@Html.DisplayFor(modelItem => item.Gia) </td>
+                                <td>@Html.DisplayFor(modelItem => item.GiamGia) </td>
+                                <td>@Html.DisplayFor(modelItem => item.SoLuong)</td>
+                                <td>@Html.DisplayFor(modelItem => item.ThanhTien)</td>
+                                <td>
+                                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                                </td>
+                            </tr>
+                            }
+                        </tbody>
+                        <tr style="font-weight" :bold; text-align:right; color:red">
+                            <td colspan="3">Số lượng: @ViewBag.TongSoLuong</td>
+                            <td colspan="4">Số loại: @ViewBag.TongSoLuongSanPham </td>
+                            <td colspan="5">Tổng tiền: @String.Format("{0:0,0}", @ViewBag.TongTien) VNĐ</td>
+                        </tr>
+                        <tr style=" font-weight:bold" ; text-align:right; color:red">
+                            <td colspan="6">@Html.ActionLink("Quay lại giỏ hàng", "GioHang", "GioHang")</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
