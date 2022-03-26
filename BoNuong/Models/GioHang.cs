@@ -43,5 +43,14 @@ namespace BoNuong.Models
             SoLuong = 1;
             GiamGia = 0;
         }
+        public GioHang()
+        {
+            MaSP = 1;
+            Ten = "Bo";
+            Hinh = "";
+            Gia = 1000;
+            SoLuong = 2;
+            GiamGia = 3;
+        }
     }
 }
