@@ -27,6 +27,7 @@ namespace BoNuong.Models
         [StringLength(255)]
         public string MoTa { get; set; }
 
+        [DisplayFormat(DataFormatString = "{0:0,0}")]
         public double? Gia { get; set; }
 
         public int? SoLuong { get; set; }
@@ -34,6 +35,7 @@ namespace BoNuong.Models
         [StringLength(10)]
         public string DonVi { get; set; }
 
+        [DisplayFormat(DataFormatString = "{0:0,0}")]
         public double? GiamGia { get; set; }
 
         [StringLength(255)]

@@ -13,8 +13,8 @@
                 <div class="breadcrumb__text">
                     <h2>Chi tiết sản phẩm</h2>
                     <div class="breadcrumb__option">
-                        <a href="/">Trang chủ</a>
-                        <a href="/Sanphams">Sản phẩm</a>
+                        <a href="/" style="text-decoration:none">Trang chủ</a>
+                        <a href="/Sanphams" style="text-decoration:none">Sản phẩm</a>
                         <span>Chi tiết</span>
                     </div>
                 </div>
@@ -31,30 +31,31 @@
                 <div class="product__details__pic">
                     <div class="product__details__pic__item">
                         <img class="product__details__pic__item--large"
-                             src="/Content/img/product/details/product-details-1.jpg" alt="">
+                             src="@Html.DisplayFor(model => model.Hinh)" alt="">
                     </div>
                     @*<div class="product__details__pic__slider owl-carousel">
-                            <img data-imgbigurl="/Content/img/product/details/product-details-2.jpg"
-                                 src="/Content/img/product/details/thumb-1.jpg" alt="">
-                            <img data-imgbigurl="/Content/img/product/details/product-details-3.jpg"
-                                 src="/Content/img/product/details/thumb-2.jpg" alt="">
-                            <img data-imgbigurl="/Content/img/product/details/product-details-5.jpg"
-                                 src="/Content/img/product/details/thumb-3.jpg" alt="">
-                            <img data-imgbigurl="/Content/img/product/details/product-details-4.jpg"
-                                 src="/Content/img/product/details/thumb-4.jpg" alt="">
-                        </div>*@
+                    <img data-imgbigurl="/Content/img/product/details/product-details-2.jpg"
+                         src="/Content/img/product/details/thumb-1.jpg" alt="">
+                    <img data-imgbigurl="/Content/img/product/details/product-details-3.jpg"
+                         src="/Content/img/product/details/thumb-2.jpg" alt="">
+                    <img data-imgbigurl="/Content/img/product/details/product-details-5.jpg"
+                         src="/Content/img/product/details/thumb-3.jpg" alt="">
+                    <img data-imgbigurl="/Content/img/product/details/product-details-4.jpg"
+                         src="/Content/img/product/details/thumb-4.jpg" alt="">
+                </div>*@
                 </div>
             </div>
+           
             <div class="col-lg-6 col-md-6">
                 <div class="product__details__text">
                     <h3 style="font-size:30px">@Html.DisplayFor(model => model.Ten)</h3>
                     <div class="product__details__rating">
                         @*<i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star-half-o"></i>*@
-                        <span>(18 reviews)</span>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star-half-o"></i>*@
+                        <span>(@Model.BinhLuan.Count reviews)</span>
                     </div>
                     <div class="product__details__price">Giá: @Html.DisplayFor(model => model.Gia) VNĐ</div>
                     <div style="font-size:18px">Giảm giá: @Html.DisplayFor(model => model.GiamGia) VNĐ</div>
@@ -70,21 +71,23 @@
                 </div>
             </div>
         </div>*@
-                    <a href="#" class="primary-btn" style="margin-top:20px">Thêm vào giỏ hàng</a>
+                    <a href="@Url.Action("ThemGioHang","GioHang", new { @id = Model.MaSP , @strURL = Request.Url.ToString() } )" class="primary-btn" style="margin-top:20px; text-decoration: none">Thêm vào giỏ hàng</a>
+                    @*@Html.ActionLink("Di den gio hang","GioHang","GioHang")*@
                     @*<a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>*@
                     @*<ul>
-            <li>
-                <b>Chia sẻ</b>
-                <div class="share">
-                    <a href="#"><i class="fa fa-facebook"></i></a>
-                    <a href="#"><i class="fa fa-twitter"></i></a>
-                    <a href="#"><i class="fa fa-instagram"></i></a>
-                    <a href="#"><i class="fa fa-pinterest"></i></a>
-                </div>
-            </li>
-        </ul>*@
+                    <li>
+                        <b>Chia sẻ</b>
+                        <div class="share">
+                            <a href="#"><i class="fa fa-facebook"></i></a>
+                            <a href="#"><i class="fa fa-twitter"></i></a>
+                            <a href="#"><i class="fa fa-instagram"></i></a>
+                            <a href="#"><i class="fa fa-pinterest"></i></a>
+                        </div>
+                    </li>
+                </ul>*@
                 </div>
             </div>
+
             <div class="col-lg-12">
                 @using (Html.BeginForm())
                 {
@@ -95,21 +98,22 @@
                             <div class="container mt-5">
                                 <div class="row d-flex justify-content-center">
                                     <div class="col-md-8">
-                                        <strong>Bình Luận</strong>
+                                        <strong style="font-size:20px">Bình Luận</strong>
                                         <div class="card p-3">
                                             <div class="d-flex justify-content-between align-items-center">
                                                 <div class="user d-flex flex-row align-items-center">
-                                                    <textarea rows="3" cols="98" style="resize:none;border:none;" placeholder="Hãy để lại cảm nghĩ của bạn về món ăn này nhé!"></textarea>
+                                                    <textarea name="txtContent" rows="3" cols="98" style="resize:none;border:none;font-size:14px" placeholder="Hãy để lại cảm nghĩ của bạn về món ăn này nhé!"></textarea>
                                                 </div>
                                             </div>
                                         </div>
-                                        <button style="margin: 5px; " class="btn btn-success pull-right">Đăng</button>
+                                       <input style="margin: 5px; font-size:14px;font-weight:500;" type="submit" value="Đăng" class="btn btn-warning pull-right" />
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 }
+
                 @foreach (var item in Model.BinhLuan)
                 {
                     <div class="container mt-5">
@@ -125,70 +129,65 @@
                                         </div> <small style="font-size: 14px;"> @Html.DisplayFor(ngaytao => item.NgayTao)</small>
                                     </div>
                                     <div class="action d-flex justify-content-between mt-2 align-items-center">
-                                        <div class="reply px-4"> <small style="font-size: 14px;min-width:100vw;">@Html.DisplayFor(noidung => item.NoiDung)</small> <span class="dots"></span>  </div>
+                                        <div class="reply px-4" style="font-size: 16px;min-width:100vw;">@Html.DisplayFor(noidung => item.NoiDung)</div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 }
+
                 @*<div class="product__details__tab">
-                    <ul class="nav nav-tabs" role="tablist">
-                        <li class="nav-item">
-                            <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab"
-                               aria-selected="true">Đánh giá</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab"
-                               aria-selected="false">Thông tin</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" data-toggle="tab" href="#tabs-3" role="tab"
-                               aria-selected="false">Nhận xét <span>(1)</span></a>
-                        </li>
-                    </ul>
-                    <div class="tab-content">
-                        <div class="tab-pane active" id="tabs-1" role="tabpanel">
-                            <div class="product__details__tab__desc">
-                                <h6>Products Infomation</h6>
-
-                                <i class="fa fa-star"></i>
-
-
-                            </div>
-                        </div>
-                        <div class="tab-pane" id="tabs-2" role="tabpanel">
-                            <div class="product__details__tab__desc">
-                                <h6>Thông tin sản phẩm</h6>
-                                <p>
-                                    <h5>Tên loại sản phẩm: </h5>@Html.DisplayFor(model => model.LoaiSP.TenLoai)
-                                </p>
-
-
-                                <p>
-
-                                    <h5>Tên sản phẩm: </h5>@Html.DisplayFor(model => model.Ten)
-                                </p>
-
-                            </div>
-                        </div>
-                        <div class="tab-pane" id="tabs-3" role="tabpanel">
-                            <div class="product__details__tab__desc">
-                                <h6>Nhận xét của khách hàng</h6>
-                                <p>
-                                    Rất ngon
-                                </p>
-                            </div>
+                <ul class="nav nav-tabs" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab"
+                           aria-selected="true">Đánh giá</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab"
+                           aria-selected="false">Thông tin</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#tabs-3" role="tab"
+                           aria-selected="false">Nhận xét <span>(1)</span></a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="tabs-1" role="tabpanel">
+                        <div class="product__details__tab__desc">
+                            <h6>Products Infomation</h6>
+                            <i class="fa fa-star"></i>
                         </div>
                     </div>
-                </div>*@
+                    <div class="tab-pane" id="tabs-2" role="tabpanel">
+                        <div class="product__details__tab__desc">
+                            <h6>Thông tin sản phẩm</h6>
+                            <p>
+                                <h5>Tên loại sản phẩm: </h5>@Html.DisplayFor(model => model.LoaiSP.TenLoai)
+                            </p>
+                            <p>
+                                <h5>Tên sản phẩm: </h5>@Html.DisplayFor(model => model.Ten)
+                            </p>
+
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="tabs-3" role="tabpanel">
+                        <div class="product__details__tab__desc">
+                            <h6>Nhận xét của khách hàng</h6>
+                            <p>
+                                Rất ngon
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>*@
             </div>
         </div>
     </div>
 </section>
 <!-- Product Details Section End -->
 <!-- Related Product Section Begin -->
-<section class="related-product">
+@*<section class="related-product">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
@@ -260,10 +259,9 @@
             </div>
         </div>
     </div>
-</section>
+</section>*@
 <!-- Related Product Section End -->
-
 @*<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.MaSP }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>*@
+        @Html.ActionLink("Edit", "Edit", new { id = Model.MaSP }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>*@
