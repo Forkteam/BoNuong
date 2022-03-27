@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
@@ -48,9 +46,10 @@ namespace BoNuong.Controllers
         // POST: BinhLuans/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "MaBinhLuan,NoiDung,MaSP,MaKH,NgayTao")] BinhLuan binhLuan)
+        public ActionResult Create(string content, int id, [Bind(Include = "MaBinhLuan,NoiDung,MaSP,MaKH,NgayTao")] BinhLuan binhLuan)
         {
             // khong xet valid MaKH vi bang user dang nhap
             ModelState.Remove("MaKH");
@@ -63,7 +62,8 @@ namespace BoNuong.Controllers
             // lay login user id
             ApplicationUser user = System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>().FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
             binhLuan.MaKH = user.Id;
-
+            binhLuan.MaSP = id;
+            binhLuan.NoiDung = content;
             binhLuan.NgayTao = DateTime.Now;
             db.BinhLuan.Add(binhLuan);
             db.SaveChanges();
