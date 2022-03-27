@@ -107,7 +107,6 @@ C:\Users\apple\source\repos\BoNuong\BoNuong\obj\Debug\BoNuong.dll
 C:\Users\apple\source\repos\BoNuong\BoNuong\obj\Debug\BoNuong.pdb
 C:\Users\apple\source\repos\BoNuong\BoNuong\bin\PagedList.dll
 C:\Users\apple\source\repos\BoNuong\BoNuong\bin\PagedList.Mvc.dll
-C:\Users\apple\source\repos\BoNuong\BoNuong\obj\Debug\BoNuong.csproj.AssemblyReference.cache
 D:\BoNuong\BoNuong\bin\BoNuong.dll.config
 D:\BoNuong\BoNuong\bin\BoNuong.dll
 D:\BoNuong\BoNuong\bin\BoNuong.pdb
