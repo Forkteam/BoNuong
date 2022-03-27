@@ -43,6 +43,23 @@ namespace BoNuong.Controllers
             return View(sanPham);
         }
 
+        [Authorize]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Details(int id)
+        {
+            BinhLuansController addbinhluan = new BinhLuansController();
+            BinhLuan binhLuan = new BinhLuan();
+            string content = Request["txtContent"].ToString() + " ";
+            if (content == " ")
+            {
+
+                return RedirectToAction("Details");
+            }
+            addbinhluan.Create(content, id, binhLuan);
+            return RedirectToAction("Details");
+        }
+
         // GET: SanPhams/Create
         public ActionResult Create()
         {
