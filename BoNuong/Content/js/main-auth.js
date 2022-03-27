@@ -1,4 +1,4 @@
-$(document).ready(function () {
+﻿$(document).ready(function () {
     
     "use strict";
     
@@ -17,10 +17,10 @@ $(document).ready(function () {
 
     $(".animated-text").typed({
         strings: [
-            "fully responsive",
-            "onepage template",
-            "mobile first",
-            "startup template"
+            "hỗ trợ trải nghiệm",
+            "nhận ưu đãi",
+            "nhận khuyến mãi",
+            "quản lý quyền truy cập vào tài khoản"
         ],
         typeSpeed: 40,
         loop: true,
