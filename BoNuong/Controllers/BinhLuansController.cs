@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
@@ -9,7 +7,6 @@ using System.Web.Mvc;
 using BoNuong.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
-using PagedList;
 
 namespace BoNuong.Controllers
 {
@@ -25,12 +22,9 @@ namespace BoNuong.Controllers
         }
 
         // GET: BinhLuans/Details/5
-        public ActionResult Details(int? id, int? page)
+        public ActionResult Details(int? id)
         {
-            if (page == null) page = 1;
-            var all_cmt = (from s in db.BinhLuan select s).OrderBy(m => m.NgayTao);
-            int pageSize = 3;
-            int pageNum = page ?? 1;
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -40,7 +34,7 @@ namespace BoNuong.Controllers
             {
                 return HttpNotFound();
             }
-            return View(all_cmt.ToPagedList(pageNum, pageSize));
+            return View(binhLuan);
         }
 
         // GET: BinhLuans/Create
