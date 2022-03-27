@@ -84,19 +84,20 @@
         </div>
         <nav class="humberger__menu__nav mobile-menu">
             <ul>
-                <li class="active">@Html.ActionLink("Home", "Index", "Home")</li>
-                <li>@Html.ActionLink("Shop", "Shopgrid", "Home")</li>
-                <li>
+                <li class="active">@Html.ActionLink("Trang chủ", "Index", "Home")</li>
+                <li>@Html.ActionLink("Sản phẩm", "Shopgrid", "Home")</li>
+                <li>@Html.ActionLink("Giỏ hàng", "GioHang", "GioHang")</li>
+                @*<li>
                     <a href="#">Pages</a>
                     <ul class="header__menu__dropdown">
                         <li>@Html.ActionLink("Shop Details", "Shopdetails", "Home")</li>
-                        <li>@Html.ActionLink("Shoping Cart", "GioHang", "GioHang")</li>
+                        <li>@Html.ActionLink("Shoping Cart", "Shopcart", "Home")</li>
                         <li>@Html.ActionLink("Check Out", "Checkout", "Home")</li>
                         <li>@Html.ActionLink("Blog Details", "Blogdetails", "Home")</li>
                     </ul>
-                </li>
-                <li>@Html.ActionLink("Blog", "Blog", "Home")</li>
-                <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                </li>*@
+                @*<li>@Html.ActionLink("Blog", "Blog", "Home")</li>*@
+                <li>@Html.ActionLink("Liên hệ", "Contact", "Home")</li>
             </ul>
         </nav>
         <div id="mobile-menu-wrap"></div>
