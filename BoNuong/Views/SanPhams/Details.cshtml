@@ -31,7 +31,7 @@
                 <div class="product__details__pic">
                     <div class="product__details__pic__item">
                         <img class="product__details__pic__item--large"
-                             src="/Content/img/product/details/product-details-1.jpg" alt="">
+                             src="@Html.DisplayFor(model => model.Hinh)" alt="">
                     </div>
                     @*<div class="product__details__pic__slider owl-carousel">
                     <img data-imgbigurl="/Content/img/product/details/product-details-2.jpg"
@@ -55,7 +55,7 @@
                     <i class="fa fa-star"></i>
                     <i class="fa fa-star"></i>
                     <i class="fa fa-star-half-o"></i>*@
-                        <span>(18 reviews)</span>
+                        <span>(@Model.BinhLuan.Count reviews)</span>
                     </div>
                     <div class="product__details__price">Giá: @Html.DisplayFor(model => model.Gia) VNĐ</div>
                     <div style="font-size:18px">Giảm giá: @Html.DisplayFor(model => model.GiamGia) VNĐ</div>
@@ -87,80 +87,6 @@
                 </ul>*@
                 </div>
             </div>
-
-            <section class="related-product">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="section-title related__product__title">
-                                <h2>Sản phẩm liên quan</h2>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-3 col-md-4 col-sm-6">
-                            <div class="product__item">
-                                <div class="product__item__pic set-bg" data-setbg="/Content/img/product/product-1.jpg">
-                                    <ul class="product__item__pic__hover">
-                                        <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                                    </ul>
-                                </div>
-                                <div class="product__item__text">
-                                    <h6><a href="#">Crab Pool Security</a></h6>
-                                    <h5>$30.00</h5>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-4 col-sm-6">
-                            <div class="product__item">
-                                <div class="product__item__pic set-bg" data-setbg="/Content/img/product/product-2.jpg">
-                                    <ul class="product__item__pic__hover">
-                                        <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                                    </ul>
-                                </div>
-                                <div class="product__item__text">
-                                    <h6><a href="#">Crab Pool Security</a></h6>
-                                    <h5>$30.00</h5>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-4 col-sm-6">
-                            <div class="product__item">
-                                <div class="product__item__pic set-bg" data-setbg="/Content/img/product/product-3.jpg">
-                                    <ul class="product__item__pic__hover">
-                                        <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                                    </ul>
-                                </div>
-                                <div class="product__item__text">
-                                    <h6><a href="#">Crab Pool Security</a></h6>
-                                    <h5>$30.00</h5>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-4 col-sm-6">
-                            <div class="product__item">
-                                <div class="product__item__pic set-bg" data-setbg="/Content/img/product/product-7.jpg">
-                                    <ul class="product__item__pic__hover">
-                                        <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                                    </ul>
-                                </div>
-                                <div class="product__item__text">
-                                    <h6><a href="#">Crab Pool Security</a></h6>
-                                    <h5>$30.00</h5>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
 
             <div class="col-lg-12">
                 @using (Html.BeginForm())
@@ -203,14 +129,13 @@
                                         </div> <small style="font-size: 14px;"> @Html.DisplayFor(ngaytao => item.NgayTao)</small>
                                     </div>
                                     <div class="action d-flex justify-content-between mt-2 align-items-center">
-                                        <div class="reply px-4"> <small style="font-size: 14px;min-width:100vw;">@Html.DisplayFor(noidung => item.NoiDung)</small> <span class="dots"></span>  </div>
+                                        <div class="reply px-4" style="font-size: 16px;min-width:100vw;">@Html.DisplayFor(noidung => item.NoiDung)</div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 }
-
 
                 @*<div class="product__details__tab">
                 <ul class="nav nav-tabs" role="tablist">
@@ -231,10 +156,7 @@
                     <div class="tab-pane active" id="tabs-1" role="tabpanel">
                         <div class="product__details__tab__desc">
                             <h6>Products Infomation</h6>
-
                             <i class="fa fa-star"></i>
-
-
                         </div>
                     </div>
                     <div class="tab-pane" id="tabs-2" role="tabpanel">
@@ -243,10 +165,7 @@
                             <p>
                                 <h5>Tên loại sản phẩm: </h5>@Html.DisplayFor(model => model.LoaiSP.TenLoai)
                             </p>
-
-
                             <p>
-
                                 <h5>Tên sản phẩm: </h5>@Html.DisplayFor(model => model.Ten)
                             </p>
 
@@ -268,7 +187,79 @@
 </section>
 <!-- Product Details Section End -->
 <!-- Related Product Section Begin -->
-
+@*<section class="related-product">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-title related__product__title">
+                    <h2>Sản phẩm liên quan</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="product__item">
+                    <div class="product__item__pic set-bg" data-setbg="/Content/img/product/product-1.jpg">
+                        <ul class="product__item__pic__hover">
+                            <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                            <li><a href="#"><i class="fa fa-retweet"></i></a></li>
+                            <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                        </ul>
+                    </div>
+                    <div class="product__item__text">
+                        <h6><a href="#">Crab Pool Security</a></h6>
+                        <h5>$30.00</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="product__item">
+                    <div class="product__item__pic set-bg" data-setbg="/Content/img/product/product-2.jpg">
+                        <ul class="product__item__pic__hover">
+                            <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                            <li><a href="#"><i class="fa fa-retweet"></i></a></li>
+                            <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                        </ul>
+                    </div>
+                    <div class="product__item__text">
+                        <h6><a href="#">Crab Pool Security</a></h6>
+                        <h5>$30.00</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="product__item">
+                    <div class="product__item__pic set-bg" data-setbg="/Content/img/product/product-3.jpg">
+                        <ul class="product__item__pic__hover">
+                            <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                            <li><a href="#"><i class="fa fa-retweet"></i></a></li>
+                            <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                        </ul>
+                    </div>
+                    <div class="product__item__text">
+                        <h6><a href="#">Crab Pool Security</a></h6>
+                        <h5>$30.00</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="product__item">
+                    <div class="product__item__pic set-bg" data-setbg="/Content/img/product/product-7.jpg">
+                        <ul class="product__item__pic__hover">
+                            <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                            <li><a href="#"><i class="fa fa-retweet"></i></a></li>
+                            <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                        </ul>
+                    </div>
+                    <div class="product__item__text">
+                        <h6><a href="#">Crab Pool Security</a></h6>
+                        <h5>$30.00</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>*@
 <!-- Related Product Section End -->
 @*<p>
         @Html.ActionLink("Edit", "Edit", new { id = Model.MaSP }) |

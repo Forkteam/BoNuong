@@ -53,7 +53,6 @@ namespace BoNuong.Controllers
             string content = Request["txtContent"].ToString() + " ";
             if (content == " ")
             {
-
                 return RedirectToAction("Details");
             }
             addbinhluan.Create(content, id, binhLuan);
