@@ -13,8 +13,8 @@
                 <div class="breadcrumb__text">
                     <h2>Chi tiết sản phẩm</h2>
                     <div class="breadcrumb__option">
-                        <a href="/">Trang chủ</a>
-                        <a href="/Sanphams">Sản phẩm</a>
+                        <a href="/" style="text-decoration:none">Trang chủ</a>
+                        <a href="/Sanphams" style="text-decoration:none">Sản phẩm</a>
                         <span>Chi tiết</span>
                     </div>
                 </div>
@@ -65,13 +65,14 @@
                     <div style="font-size:18px">Loại sản phẩm: @Html.DisplayFor(model => model.LoaiSP.TenLoai)</div>
                     @*Them trang thai cho mon an*@
                     @*<div class="product__details__quantity">
-                    <div class="quantity">
-                        <div class="pro-qty">
-                            <input type="text" value="1">
-                        </div>
-                    </div>
-                </div>*@
-                    <a href="#" class="primary-btn" style="margin-top:20px">Thêm vào giỏ hàng</a>
+            <div class="quantity">
+                <div class="pro-qty">
+                    <input type="text" value="1">
+                </div>
+            </div>
+        </div>*@
+                    <a href="@Url.Action("ThemGioHang","GioHang", new { @id = Model.MaSP , @strURL = Request.Url.ToString() } )" class="primary-btn" style="margin-top:20px; text-decoration: none">Thêm vào giỏ hàng</a>
+                    @*@Html.ActionLink("Di den gio hang","GioHang","GioHang")*@
                     @*<a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>*@
                     @*<ul>
                     <li>

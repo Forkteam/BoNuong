@@ -21,63 +21,61 @@
 @*//** Banner**//*@
 <section id="home">
     <div class="container">
-        <div class="row">
-            @*Introduction*@
-            <div class="col-md-6 caption">
-                <h1>Chào mừng bạn đến với Ký Túc Xá</h1>
-                <h2>
-                    I am
-                    <span class="animated-text"></span>
-                    <span class="typed-cursor"></span>
-                </h2>
-
-                <p>
-                    Ký túc xá không chỉ là nơi ở mà môi trường
-                    <strong style="color: aquamarine"> Học Tập - Rèn Luyện </strong>
-                    của sinh viên
-                </p>
-                @*<a href="#" class="btn btn-transparent">Get Started</a>
-                    <a class="btn btn-blue popup-youtube" href="https://www.youtube.com/watch?v=Q8TXgCzxEnw">
-                        <i class="material-icons">play_circle_filled</i>Watch Video
-                    </a>*@
-            </div>
-            @*Sign Up*@
-            @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { role = "form", @style = "width:400px" }))
+         <div class="row">
+             @*Introduction*@ 
+             <div class="col-md-6 caption">
+                 <h1>Chào mừng bạn đến với Bò Nướng Vỉa Hè</h1>
+                 <h2>
+                     Dữ liệu cá nhân của bạn sẽ được sử dụng để
+                     <span class="animated-text"></span>
+                     <span class="typed-cursor"></span>
+                 </h2>
+                 <p>
+                     Ăn là
+                     <strong style="color: aquamarine"> Mê </strong>
+                     !
+                 </p>
+                 @*<a href="#" class="btn btn-transparent">Get Started</a>
+        <a class="btn btn-blue popup-youtube" href="https://www.youtube.com/watch?v=Q8TXgCzxEnw">
+            <i class="material-icons">play_circle_filled</i>Watch Video
+        </a>*@
+             </div>
+            @*Sign Up*@ 
+            @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { role = "form", @style="width:500px" }))
             {
                 @Html.AntiForgeryToken()
-                <div class="col-md-offset-1">
-                    <form class="signup-form">
-                        <h2 class="text-center text-white">Đăng ký</h2>
-                        <hr />
-                        <div class="form-group">
-                            @Html.TextBoxFor(m => m.Name, new { @class = "form-control", @placeholder = "Họ tên", @style = "height:50px" })
-                        </div>
-                        <div class="form-group">
-                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "Email", @style = "height:50px" })
-                        </div>
-                        <div class="form-group">
-                            @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "Mật khẩu", @style = "height:50px" })
-                        </div>
-                        <div class="form-group">
-                            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", @placeholder = "Nhập lại mật khẩu", @style = "height:50px" })
-                        </div>
-                        <div class="form-group">
-                            @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control", @placeholder = "Số điện thoại", @style = "height:50px" })
-                        </div>
-                        <div class="form-group">
-                            @Html.TextBoxFor(m => m.Address, new { @class = "form-control", @placeholder = "Địa chỉ", @style = "height:50px" })
-                        </div>
-                        <div class="form-group">
-                            <div class="col-md-offset-2 col-md-10">
-                                <input type="submit" class="btn btn-blue btn-block" value="Đăng ký" />
-                            </div>
-                        </div>
-                    </form>
-                    <p>
-                        @Html.ActionLink("Đã có tài khoản", "Login")
-                    </p>
-                </div>
-            }
+                 <div class="col-md-offset-1">
+                     <div class="signup-form">
+                         <h2 class="text-center">Đăng ký</h2>
+                         <hr />
+                         @Html.ValidationSummary("", new { @class = "text-danger", @style= "font-size: 14px;" })
+                         <div class="form-group">
+                             @Html.TextBoxFor(m => m.Name, new { @class = "form-control", @placeholder = "Họ tên", @style = "height:50px" })
+                         </div>
+                         <div class="form-group">
+                             @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "Email", @style = "height:50px" })
+                         </div>
+                         <div class="form-group">
+                             @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "Mật khẩu", @style = "height:50px" })
+                         </div>
+                         <div class="form-group">
+                             @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", @placeholder = "Nhập lại mật khẩu", @style = "height:50px" })
+                         </div>
+                         <div class="form-group">
+                             @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control", @placeholder = "Số điện thoại", @style = "height:50px" })
+                         </div>
+                         <div class="form-group">
+                             @Html.TextBoxFor(m => m.Address, new { @class = "form-control", @placeholder = "Địa chỉ", @style = "height:50px" })
+                         </div>
+                         <div class="form-group">
+                            <input type="submit" class="btn btn-blue btn-block text-center" value="Đăng ký" style="background-color: #44c5ee" />
+                         </div>
+                         <div class="form-group">
+                             @Html.ActionLink("Đã có tài khoản", "Login", routeValues: null, htmlAttributes: new { @class = "col-md-offset-2 col-md-10 text-center", @style = "margin-top:10px; font-size: 12px;" })
+                         </div>
+                     </div>
+                 </div>
+             }
         </div>
     </div>
 </section>
