@@ -10,12 +10,12 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <div class="hero__item set-bg" data-setbg="/Content/images/banner/banner2.jpg">
+                <div class="hero__item set-bg" data-setbg="/Content/img/hero/banner.jpg">
                     <div class="hero__text">
-                        <span>Bò Nướng Vĩ Hè</span>
-                        <h2>Bò Nướng <br />100% Tư nhiên</h2>
+                        <span>Bò Nướng Vỉa Hè</span>
+                        <h2>Bò nướng <br />100% tự nhiên</h2>
                         <p>Nhận và giao hàng miễn phí có sẵn</p>
-                        <a href="#" class="primary-btn">Đến shop ngay</a>
+                        <a href="/Account/Register" class="primary-btn">Đến shop ngay</a>
                     </div>
                 </div>
             </div>
@@ -53,7 +53,7 @@
 
 <!-- Categories Section End -->
 <!-- Featured Section Begin -->
-<section class="featured">
+<section class="featured" style="margin-top: 75px;">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
@@ -73,14 +73,13 @@
                                 <div class="featured__item__pic set-bg" data-setbg="@item.Hinh">
                                     <ul class="featured__item__pic__hover">
                                         <li>
-                                            <a href="@Url.Action("ThemGioHang", "GioHang",
-                                    new { @id = item.MaSP, @strURL = Request.Url.ToString() })"><i class="fa fa-shopping-cart"></i></a>
+                                            <a href="@Url.Action("ThemGioHang", "GioHang", new { @id = item.MaSP, @strURL = Request.Url.ToString() })"><i class="fa fa-shopping-cart"></i></a>
                                         </li>
                                     </ul>
                                 </div>
                                 <div class="featured__item__text">
                                     <h6><a href="#">@item.Ten</a></h6>
-                                    <h5>@item.Gia</h5>
+                                    <h5>@String.Format("{0:0,0}", @item.Gia)</h5>
                                 </div>
                             </div>
                         </div>
@@ -110,14 +109,13 @@
                                 <div class="featured__item__pic set-bg" data-setbg="@item.Hinh">
                                     <ul class="featured__item__pic__hover">
                                         <li>
-                                            <a href="@Url.Action("ThemGioHang", "GioHang",
-                                    new { @id = item.MaSP, @strURL = Request.Url.ToString() })"><i class="fa fa-shopping-cart"></i></a>
+                                            <a href="@Url.Action("ThemGioHang", "GioHang", new { @id = item.MaSP, @strURL = Request.Url.ToString() })"><i class="fa fa-shopping-cart"></i></a>
                                         </li>
                                     </ul>
                                 </div>
                                 <div class="featured__item__text">
                                     <h6><a href="#">@item.Ten</a></h6>
-                                    <h5>@item.Gia</h5>
+                                    <h5>@String.Format("{0:0,0}", @item.Gia)</h5>
                                 </div>
                             </div>
                         </div>
@@ -147,14 +145,13 @@
                                 <div class="featured__item__pic set-bg" data-setbg="@item.Hinh">
                                     <ul class="featured__item__pic__hover">
                                         <li>
-                                            <a href="@Url.Action("ThemGioHang", "GioHang",
-                                    new { @id = item.MaSP, @strURL = Request.Url.ToString() })"><i class="fa fa-shopping-cart"></i></a>
+                                            <a href="@Url.Action("ThemGioHang", "GioHang", new { @id = item.MaSP, @strURL = Request.Url.ToString() })"><i class="fa fa-shopping-cart"></i></a>
                                         </li>
                                     </ul>
                                 </div>
                                 <div class="featured__item__text">
                                     <h6><a href="#">@item.Ten</a></h6>
-                                    <h5>@item.Gia</h5>
+                                    <h5>@String.Format("{0:0,0}", @item.Gia)</h5>
                                 </div>
                             </div>
                         </div>
@@ -184,14 +181,13 @@
                                 <div class="featured__item__pic set-bg" data-setbg="@item.Hinh">
                                     <ul class="featured__item__pic__hover">
                                         <li>
-                                            <a href="@Url.Action("ThemGioHang", "GioHang",
-                                    new { @id = item.MaSP, @strURL = Request.Url.ToString() })"><i class="fa fa-shopping-cart"></i></a>
+                                            <a href="@Url.Action("ThemGioHang", "GioHang", new { @id = item.MaSP, @strURL = Request.Url.ToString() })"><i class="fa fa-shopping-cart"></i></a>
                                         </li>
                                     </ul>
                                 </div>
                                 <div class="featured__item__text">
                                     <h6><a href="#">@item.Ten</a></h6>
-                                    <h5>@item.Gia</h5>
+                                    <h5>@String.Format("{0:0,0}", @item.Gia)</h5>
                                 </div>
                             </div>
                         </div>
@@ -235,7 +231,7 @@
                                     </div>
                                     <div class="latest-product__item__text">
                                         <h6>@item.Ten</h6>
-                                        <span>@item.Gia</span>
+                                        <span>@String.Format("{0:0,0}", @item.Gia)</span>
                                     </div>
                                 </a>
                                 <a href="#" class="latest-product__item">
@@ -244,7 +240,7 @@
                                     </div>
                                     <div class="latest-product__item__text">
                                         <h6>@item.Ten</h6>
-                                        <span>@item.Gia</span>
+                                        <span>@String.Format("{0:0,0}", @item.Gia)</span>
                                     </div>
                                 </a>
                                 <a href="#" class="latest-product__item">
@@ -253,7 +249,7 @@
                                     </div>
                                     <div class="latest-product__item__text">
                                         <h6>@item.Ten</h6>
-                                        <span>@item.Gia</span>
+                                        <span>@String.Format("{0:0,0}", @item.Gia)</span>
                                     </div>
                                 </a>
                             </div>
@@ -275,7 +271,7 @@
                                     </div>
                                     <div class="latest-product__item__text">
                                         <h6>@item.Ten</h6>
-                                        <span>@item.Gia</span>
+                                        <span>@String.Format("{0:0,0}", @item.Gia)</span>
                                     </div>
                                 </a>
                                 <a href="#" class="latest-product__item">
@@ -284,7 +280,7 @@
                                     </div>
                                     <div class="latest-product__item__text">
                                         <h6>@item.Ten</h6>
-                                        <span>@item.Gia</span>
+                                        <span>@String.Format("{0:0,0}", @item.Gia)</span>
                                     </div>
                                 </a>
                                 <a href="#" class="latest-product__item">
@@ -293,7 +289,7 @@
                                     </div>
                                     <div class="latest-product__item__text">
                                         <h6>@item.Ten</h6>
-                                        <span>@item.Gia</span>
+                                        <span>@String.Format("{0:0,0}", @item.Gia)</span>
                                     </div>
                                 </a>
                             </div>

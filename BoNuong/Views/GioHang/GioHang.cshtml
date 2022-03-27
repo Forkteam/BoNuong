@@ -27,9 +27,11 @@
                     <table>
                         <thead>
                             <tr>
-                                <th class="shoping__product">Sản phẩm</th>
+                                <th class="text-left">#</th>
+                                <th class="text-left">Tên</th>
                                 <th>Giá</th>
                                 <th>Số lượng</th>
+                                <th>Giảm giá</th>
                                 <th>Thành tiền</th>
                                 <th></th>
                             </tr>
@@ -39,8 +41,10 @@
                             {
                             <tr>
 
-                                <td class="shoping__cart__item">
-                                    <img src="@item.Hinh" width="200" />
+                                <td class="text-left">
+                                    <img src="@item.Hinh" width="175" />
+                                </td>
+                                <td class="text-left">
                                     <p>@Html.DisplayFor(modelItem => item.Ten)</p>
                                 </td>
 
@@ -49,13 +53,15 @@
                                     <td class="shoping__cart__price">
                                         @String.Format("{0:0,0}", item.Gia) VNĐ
                                     </td>
-
                                     <td class="shoping__cart__quantity">
                                         <div class="quantity">
                                             <div class="pro-qty">
-                                                 <input type="number" min="1" name="txtSolg" value="@item.SoLuong" />
+                                                <input type="number" min="1" name="txtSolg" value="@item.SoLuong" />
                                             </div>
                                         </div>
+                                    </td>
+                                    <td class="shoping__cart__price">
+                                        @String.Format("{0:0,0}", item.GiamGia) VNĐ
                                     </td>
                                     <td class="shoping__cart__total">
                                         @String.Format("{0:0,0}", item.ThanhTien) VNĐ
@@ -82,14 +88,14 @@
                         @Html.ActionLink("Tiếp tục mua sắm", "Index", "Home", new { @style = "text-decoration:none" })
                     </div>
 
-                    <a href="#" class="primary-btn cart-btn cart-btn-right" style="text-decoration:none">
+                    @*<a href="#" class="primary-btn cart-btn cart-btn-right" style="text-decoration:none">
                         <span class="icon_loading"></span>
                         Cập nhật thay đổi
-                    </a>
+                    </a>*@
                 </div>
             </div>
             <div class="col-lg-6">
-                <div class="shoping__continue">
+                @*<div class="shoping__continue">
                     <div class="shoping__discount">
                         <h5>Mã giảm giá</h5>
                         <form action="#">
@@ -97,14 +103,14 @@
                             <button type="submit" class="site-btn">Áp dụng mã</button>
                         </form>
                     </div>
-                </div>
+                </div>*@
             </div>
             <div class="col-lg-6">
                 <div class="shoping__checkout">
                     <h5>Tổng giỏ hàng</h5>
                     <ul>
-                        <li>Tổng tiền <span> @String.Format("{0:0,0}", @ViewBag.TongTien) VNĐ</span></li>
-                        <li>Khuyễn mãi <span></span></li>
+                        @*<li>Tổng tiền <span> @String.Format("{0:0,0}", @ViewBag.TongTien) VNĐ</span></li>
+                        <li>Khuyễn mãi <span></span></li>*@
                         <li>Tổng tiền thanh toán <span></span> @String.Format("{0:0,0}", @ViewBag.TongTien) VNĐ</li>
                     </ul>
                     <a href="#" class="primary-btn" style="text-decoration:none">TIẾN HÀNH THANH TOÁN</a>
