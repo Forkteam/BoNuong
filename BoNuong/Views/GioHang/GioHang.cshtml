@@ -113,7 +113,7 @@
                         <li>Khuyễn mãi <span></span></li>*@
                         <li>Tổng tiền thanh toán <span></span> @String.Format("{0:0,0}", @ViewBag.TongTien) VNĐ</li>
                     </ul>
-                    <a href="#" class="primary-btn" style="text-decoration:none">TIẾN HÀNH THANH TOÁN</a>
+                        @Html.ActionLink("TIẾN HÀNH THANH TOÁN","DatHang","GioHang")
                 </div>
             </div>
         </div>

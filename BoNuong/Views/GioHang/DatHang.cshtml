@@ -1,0 +1,87 @@
+﻿@model IEnumerable<BoNuong.Models.GioHang>
+
+@{
+    ViewBag.Title = "Dang ki HP";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Giỏ hàng</h2>
+<table class="table">
+    <tr>
+
+        <th>
+            @Html.DisplayNameFor(model => model.MaSP)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ten)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SoLuong)
+        </th>
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaSP)
+            </td>
+            @using (Html.BeginForm("CapnhatGioHang", "GioHang", new { @id = item.MaSP }))
+            {
+                <td> @Html.DisplayFor(modelItem => item.Ten) </td>
+                <td>
+                    @Html.ActionLink("Xóa", "XoaGioHang", new { @id = item.MaSP })
+                </td>
+            }
+
+        </tr>
+    }
+    <tr style="font-weight:bold; text-align:left; color:red">
+
+        <td colspan="2"> Số lượng : @ViewBag.Tong</td>
+
+    </tr>
+    <tr style="font-weight: bold; color:blue; text-align:right">
+        <td colspan="5">
+            @Html.ActionLink("Xóa đăng kí", "XoaTatCaGioHang")
+        </td>
+    </tr>
+    <tr style="font-weight: bold; color:yellow; text-align:right">
+        <td colspan="5">
+            @Html.ActionLink("Lưu thông tin", "Dathang", "GioHang")
+        </td>
+    </tr>
+
+</table>
+@using BoNuong.Models
+<h2 style="text-align:center">Thông tin đăng kí</h2>
+@{
+    SanPham kh = (SanPham)Session["UserName"];
+}
+<table align="center">
+    @using (Html.BeginForm())
+    {
+        @Html.ValidationSummary(true)
+        <tr style="height:40px">
+            <td>MSSV: </td>
+            <td style="font-weight:bold">@kh.MaSP</td>
+        </tr>
+        <tr style="height:40px">
+            <td>Họ tên: </td>
+            <td style="font-weight:bold">@kh.Ten</td>
+        </tr>
+
+        <tr style="height:40px">
+            <td>Ngày đăng kí: </td>
+            <td style="font-weight:bold">@DateTime.Now.ToShortDateString()</td>
+        </tr>
+
+        <tr style="height:40px">
+            <td></td>
+            <td style="font-weight:bold">
+                <input type="submit" value="Xác nhận" class="btn btn-success" />
+            </td>
+        </tr>
+    }
+</table>
