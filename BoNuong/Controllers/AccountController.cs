@@ -8,7 +8,10 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+
 using BoNuong.Models;
+using BoNuong.Models.LinQ;
+
 
 namespace BoNuong.Controllers
 {
@@ -17,6 +20,8 @@ namespace BoNuong.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+
+        MyDataDataContext context = new MyDataDataContext();
 
         public AccountController()
         {
@@ -79,7 +84,11 @@ namespace BoNuong.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
+                    {
+                        var kh = context.AspNetUsers.Where(p => p.Email == model.Email).FirstOrDefault();
+                        Session["TaiKhoan"] = kh;
+                        return RedirectToLocal(returnUrl);
+                    }
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
