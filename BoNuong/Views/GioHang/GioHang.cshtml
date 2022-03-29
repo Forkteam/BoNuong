@@ -39,41 +39,42 @@
                         <tbody>
                             @foreach (var item in Model)
                             {
-                            <tr>
+                                <tr>
 
-                                <td class="text-left">
-                                    <img src="@item.Hinh" width="175" />
-                                </td>
-                                <td class="text-left">
-                                    <p>@Html.DisplayFor(modelItem => item.Ten)</p>
-                                </td>
-
-                                @using (Html.BeginForm("CapNhatGioHang", "GioHang", new { @id = item.MaSP }))
-                                {
-                                    <td class="shoping__cart__price">
-                                        @String.Format("{0:0,0}", item.Gia) VNĐ
+                                    <td class="text-left">
+                                        <img src="@item.Hinh" width="175" />
                                     </td>
-                                    <td class="shoping__cart__quantity">
-                                        <div class="quantity">
-                                            <div class="pro-qty">
-                                                <input type="number" min="1" name="txtSolg" value="@item.SoLuong" />
+                                    <td class="text-left">
+                                        <p>@Html.DisplayFor(modelItem => item.Ten)</p>
+                                    </td>
+
+                                    @using (Html.BeginForm("CapNhatGioHang", "GioHang", new { @id = item.MaSP }))
+                                    {
+                                        <td class="shoping__cart__price">
+                                            @String.Format("{0:0,0}", item.Gia) VNĐ
+                                        </td>
+                                        <td class="shoping__cart__quantity">
+                                            <div class="quantity">
+                                                <div class="pro-qty">
+                                                    <input type="number" min="1" name="txtSolg" value="@item.SoLuong" />
+                                                </div>
                                             </div>
-                                        </div>
+                                        </td>
+                                        <td class="shoping__cart__price">
+                                            @String.Format("{0:0,0}", item.GiamGia) VNĐ
+                                        </td>
+                                        <td class="shoping__cart__total">
+                                            @String.Format("{0:0,0}", item.ThanhTien) VNĐ
+                                        </td>
+                                        <td> <input type="submit" value="Cập nhật" class="btn btn-success" /> </td>
+                                    }
+                                    <td class="shoping__cart__item__close" style="margin-left:30px">
+                                        <span><a href="@Url.Action("XoaGioHang", "GioHang", new { @id = item.MaSP })" class="icon_close " style="text-decoration : none"></a></span>
                                     </td>
-                                    <td class="shoping__cart__price">
-                                        @String.Format("{0:0,0}", item.GiamGia) VNĐ
-                                    </td>
-                                    <td class="shoping__cart__total">
-                                        @String.Format("{0:0,0}", item.ThanhTien) VNĐ
-                                    </td>
-                                    <td> <input type="submit" value="Cập nhật" class="btn btn-success" /> </td>
-                                }
-                                <td class="shoping__cart__item__close">
-                                    <span><a href="@Url.Action("XoaGioHang", "GioHang", new { @id = item.MaSP })" class="icon_close " style="text-decoration : none"></a></span>
-                                </td>
-                            </tr>                    
-                        }
-                            </tbody>
+                                </tr>
+
+                            }
+                        </tbody>
 
                         </table>
                 </div>
@@ -84,8 +85,8 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="shoping__cart__btns">
-                    <div class="primary-btn cart-btn">
-                        @Html.ActionLink("Tiếp tục mua sắm", "Index", "Home", new { @style = "text-decoration:none" })
+                    <div style="text-decoration:none;" class="primary-btn cart-btn">
+                        <a href="/" style="text-decoration:none;"> Tiếp Tục Mua Sắm </a>
                     </div>
 
                     @*<a href="#" class="primary-btn cart-btn cart-btn-right" style="text-decoration:none">
@@ -109,11 +110,9 @@
                 <div class="shoping__checkout">
                     <h5>Tổng giỏ hàng</h5>
                     <ul>
-                        @*<li>Tổng tiền <span> @String.Format("{0:0,0}", @ViewBag.TongTien) VNĐ</span></li>
-                        <li>Khuyễn mãi <span></span></li>*@
-                        <li>Tổng tiền thanh toán <span></span> @String.Format("{0:0,0}", @ViewBag.TongTien) VNĐ</li>
+                        <li>Tổng tiền thanh toán <span style="color:red;" > @String.Format("{0:0,0}", @ViewBag.TongTien) VNĐ </span></li>
                     </ul>
-                    <a href="#" class="primary-btn" style="text-decoration:none">TIẾN HÀNH THANH TOÁN</a>
+                  <a href="/GioHang/DatHang" class="primary-btn" style="text-decoration:none">TIẾN HÀNH THANH TOÁN</a>
                 </div>
             </div>
         </div>
