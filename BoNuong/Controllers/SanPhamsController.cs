@@ -144,6 +144,7 @@ namespace BoNuong.Controllers
             return RedirectToAction("Index");
         }
 
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -151,6 +152,15 @@ namespace BoNuong.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+        public string ProcessUpload(HttpPostedFileBase file)
+        {
+            if (file == null)
+            {
+                return "";
+            }
+            file.SaveAs(Server.MapPath("~/Content/img/" + file.FileName));
+            return "/Content/img/" + file.FileName;
         }
     }
 }
