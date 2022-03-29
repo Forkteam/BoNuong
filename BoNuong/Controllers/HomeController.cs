@@ -1,16 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using BoNuong.Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
 
 namespace BoNuong.Controllers
 {
     public class HomeController : Controller
     {
+        private BoNuongContext db = new BoNuongContext();
         public ActionResult Index()
         {
-            return View();
+            var sanPham = db.SanPham.Include(s => s.LoaiSP);
+            return View(sanPham.ToList());
         }
 
         public ActionResult About()
