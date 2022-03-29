@@ -151,5 +151,14 @@ namespace BoNuong.Controllers
             }
             base.Dispose(disposing);
         }
+        public string ProcessUpload(HttpPostedFileBase file)
+        {
+            if (file == null)
+            {
+                return "";
+            }
+            file.SaveAs(Server.MapPath("~/Content/img/" + file.FileName));
+            return "/Content/img/" + file.FileName;
+        }
     }
 }
