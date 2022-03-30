@@ -26,6 +26,9 @@ namespace BoNuong.Models
         [Column(TypeName = "date")]
         public DateTime? NgayGiao { get; set; }
 
+        [DisplayFormat(DataFormatString = "{0:0,0}")]
+        public double? TongTien { get; set; }
+
         [Required]
         [StringLength(128)]
         public string MaKH { get; set; }

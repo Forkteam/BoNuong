@@ -154,6 +154,7 @@ namespace BoNuong.Controllers
             dh.NgayDat = DateTime.Now;
             dh.NgayGiao = DateTime.Parse(ngaygiao);
             dh.TrangThaiGiaoHang = false;
+            dh.TongTien = TongTien();
 
             data.DonHang.Add(dh);
             data.SaveChanges();
@@ -162,6 +163,8 @@ namespace BoNuong.Controllers
                 ChiTietDonHang ctdh = new ChiTietDonHang();
                 ctdh.MaDH = dh.MaDH;
                 ctdh.MaSP = item.MaSP;
+                ctdh.Soluong = item.SoLuong;
+                ctdh.Gia = item.ThanhTien;
                 s = data.SanPham.Single(n => n.MaSP == item.MaSP);
                 data.SaveChanges();
                 data.ChiTietDonHang.Add(ctdh);
