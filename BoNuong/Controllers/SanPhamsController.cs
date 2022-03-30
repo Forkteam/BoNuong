@@ -21,15 +21,15 @@ namespace BoNuong.Controllers
 
         public ActionResult Index(int? page)
         {
-           
-           
+
+
             if (page == null) page = 1;
             var all_sach = (from s in db.SanPham select s).OrderBy(m => m.MaSP);
             int pageSize = 12;
-            int pageNum = page?? 1;
+            int pageNum = page ?? 1;
 
             ViewBag.AllProduct = all_sach.ToPagedList(pageNum, pageSize);
-            
+
             return View(all_sach.ToPagedList(pageNum, pageSize));
         }
 
@@ -161,6 +161,7 @@ namespace BoNuong.Controllers
             }
             base.Dispose(disposing);
         }
+
         public string ProcessUpload(HttpPostedFileBase file)
         {
             if (file == null)
@@ -169,15 +170,6 @@ namespace BoNuong.Controllers
             }
             file.SaveAs(Server.MapPath("~/Content/img/" + file.FileName));
             return "/Content/img/" + file.FileName;
-        }
-
-        public ActionResult trangmau(int? page)
-        {
-            if (page == null) page = 1;
-            var all_sach = (from s in db.SanPham select s).OrderBy(m => m.MaSP);
-            int pageSize = 12;
-            int pageNum = page ?? 1;
-            return View(all_sach.ToPagedList(pageNum, pageSize));
         }
     }
 }
