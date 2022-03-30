@@ -15,6 +15,7 @@ namespace BoNuong.Controllers
     public class HomeController : Controller
     {
         private BoNuongContext db = new BoNuongContext();
+
         public ActionResult Index()
         {
             var sanPham = db.SanPham.Include(s => s.LoaiSP);
@@ -32,7 +33,7 @@ namespace BoNuong.Controllers
         {
             return View();
         }
-        public ActionResult Blogdetails()
+        public ActionResult BlogDetails()
         {
             return View();
         }
@@ -44,15 +45,15 @@ namespace BoNuong.Controllers
         {
             return View();
         }
-        public ActionResult Shopdetails()
+        public ActionResult ShopDetails()
         {
             return View();
         }
-        public ActionResult Shopgrid()
+        public ActionResult ShopGrid()
         {
             return View();
         }
-        public ActionResult Shopcart()
+        public ActionResult ShopCart()
         {
             return View();
         }

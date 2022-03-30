@@ -177,6 +177,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\BinhLuansController.cs" />
     <Compile Include="Controllers\ChiTietDonHangsController.cs" />
     <Compile Include="Controllers\DonHangsController.cs" />
@@ -207,6 +208,14 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\admin\assets\demo\chart-area-demo.js" />
+    <Content Include="Content\admin\assets\demo\chart-bar-demo.js" />
+    <Content Include="Content\admin\assets\demo\chart-pie-demo.js" />
+    <Content Include="Content\admin\assets\demo\datatables-demo.js" />
+    <Content Include="Content\admin\assets\img\error-404-monochrome.svg" />
+    <Content Include="Content\admin\css\styles.css" />
+    <Content Include="Content\admin\js\datatables-simple-demo.js" />
+    <Content Include="Content\admin\js\scripts.js" />
     <Content Include="Content\bootstrap-3.3.7\bootstrap-3.3.7-dist\css\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-3.3.7\bootstrap-3.3.7-dist\css\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap-3.3.7\bootstrap-3.3.7-dist\css\bootstrap.css" />
@@ -512,16 +521,28 @@
     <Content Include="Views\SanPhams\Details.cshtml" />
     <Content Include="Views\SanPhams\Edit.cshtml" />
     <Content Include="Views\SanPhams\Index.cshtml" />
-    <Content Include="Views\Home\Blogdetails.cshtml" />
+    <Content Include="Views\Home\BlogDetails.cshtml" />
     <Content Include="Views\Home\Checkout.cshtml" />
     <Content Include="Views\Home\Blog.cshtml" />
-    <Content Include="Views\Home\Shopcart.cshtml" />
-    <Content Include="Views\Home\Shopdetails.cshtml" />
-    <Content Include="Views\Home\Shopgrid.cshtml" />
+    <Content Include="Views\Home\ShopCart.cshtml" />
+    <Content Include="Views\Home\ShopDetails.cshtml" />
+    <Content Include="Views\Home\ShopGrid.cshtml" />
     <Content Include="Views\GioHang\GioHang.cshtml" />
     <Content Include="Views\GioHang\XacNhanDonHang.cshtml" />
     <Content Include="Views\GioHang\GioHangPartial.cshtml" />
     <Content Include="Views\GioHang\DatHang.cshtml" />
+    <Content Include="Views\Admin\Charts.cshtml" />
+    <Content Include="Views\Admin\Error401.cshtml" />
+    <Content Include="Views\Admin\Error404.cshtml" />
+    <Content Include="Views\Admin\Error500.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Admin\LayoutSideNavLight.cshtml" />
+    <Content Include="Views\Admin\LayoutStatic.cshtml" />
+    <Content Include="Views\Admin\Login.cshtml" />
+    <Content Include="Views\Admin\Password.cshtml" />
+    <Content Include="Views\Admin\Register.cshtml" />
+    <Content Include="Views\Admin\Tables.cshtml" />
+    <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

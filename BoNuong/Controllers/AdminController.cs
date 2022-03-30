@@ -13,43 +13,43 @@ namespace BoNuong.Controllers
         {
             return View();
         }
-        public ActionResult error401()
+        public ActionResult Error401()
         {
             return View();
         }
-        public ActionResult error404()
+        public ActionResult Error404()
         {
             return View();
         }
-        public ActionResult error500()
+        public ActionResult Error500()
         {
             return View();
         }
-        public ActionResult charts()
+        public ActionResult Charts()
         {
             return View();
         }
-        public ActionResult layoutsidenavlight()
+        public ActionResult LayoutSideNavLight()
         {
             return View();
         }
-        public ActionResult layoutstatic ()
+        public ActionResult LayoutStatic()
         {
             return View();
         }
-        public ActionResult login()
+        public ActionResult Login()
         {
             return View();
         }
-        public ActionResult password()
+        public ActionResult Password()
         {
             return View();
         }
-        public ActionResult register()
+        public ActionResult Register()
         {
             return View();
         }
-        public ActionResult tables()
+        public ActionResult Tables()
         {
             return View();
         }
