@@ -21,16 +21,20 @@ namespace BoNuong.Controllers
 
         public ActionResult Index(int? page)
         {
-
-
-            if (page == null) page = 1;
+            var loaiSP = db.LoaiSP.ToList();
+            //if (page == null) page = 1;
             var all_sach = (from s in db.SanPham select s).OrderBy(m => m.MaSP);
             int pageSize = 12;
             int pageNum = page ?? 1;
+            SanPhamViewModel sp = new SanPhamViewModel
+            {
+                LoaiSPs = loaiSP,
+                SanPhams = (PagedList<SanPham>)all_sach.ToPagedList(pageNum, pageSize)
+            };
 
-            ViewBag.AllProduct = all_sach.ToPagedList(pageNum, pageSize);
+            //ViewBag.AllProduct = all_sach.ToPagedList(pageNum, pageSize);
 
-            return View(all_sach.ToPagedList(pageNum, pageSize));
+            return View(sp);
         }
 
         // GET: SanPhams/Details/5

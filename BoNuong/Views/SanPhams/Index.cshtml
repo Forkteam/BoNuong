@@ -1,5 +1,5 @@
-﻿@model PagedList.PagedList<BoNuong.Models.SanPham>
-@using PagedList.Mvc;
+﻿@using PagedList.Mvc;
+@model BoNuong.Models.SanPhamViewModel
 
 
 @{
@@ -76,123 +76,113 @@
 </section>*@
 <!-- Breadcrumb Section End -->
 
-    <section class="product spad">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3 col-md-5">
-                    <div class="sidebar">
-                        <div class="sidebar__item">
-                            <h4>Loại sản phẩm</h4>
-                         
-                            @{
-                                int i = 1;
-                                foreach (var item in Model)
-                                {
-                                    if( @item.LoaiSP.MaLoai == i)
-                                    {
-                                        <ul>
-                                            <li><a href="#" style="text-decoration:none">@item.LoaiSP.TenLoai</a></li>
-                                        </ul>
-                                    }
-                                    i++;
-                                }
-
+<section class="product spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-5">
+                <div class="sidebar">
+                    <div class="sidebar__item">
+                        <h4>Loại sản phẩm</h4>
+                        @{
+                            foreach (var item in Model.LoaiSPs)
+                            {
+                                <ul>
+                                    <li><a href="#" style="text-decoration:none">@item.TenLoai</a></li>
+                                </ul>
                             }
+
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-9 col-md-7">
+                    
+                <div class="filter__item">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-5">
+                            <div class="filter__sort">
+                                   
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4">
+                            <div class="filter__found">
+                                <h6><span>@Model.SanPhams.Count()</span> Sản phẩm</h6>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-9 col-md-7">
-                    
-                    <div class="filter__item">
-                        <div class="row">
-                            <div class="col-lg-4 col-md-5">
-                                <div class="filter__sort">
-                                   
+                <div class="row">
+                    @foreach (var item in Model.SanPhams)
+                    {
+                        <div class="col-lg-4 col-md-6 col-sm-6">
+                            <div class="product__item">
+                                <div class="product__item__pic set-bg" data-setbg="@item.Hinh">
+                                    <ul class="product__item__pic__hover">
+                                        <li><a href="@Url.Action("ThemGioHang","GioHang", new { @id = item.MaSP , @strURL = Request.Url.ToString() } )"><i class="fa fa-shopping-cart"></i></a></li>
+                                    </ul>
                                 </div>
-                            </div>
-                            <div class="col-lg-4 col-md-4">
-                                <div class="filter__found">
-                                    <h6><span>@Model.Count()</span> Sản phẩm</h6>
+                                <div class="product__item__text">
+                                    <h4><a href="@Url.Action("Details", "SanPhams", new { @id = item.MaSP})" style="text-decoration:none; color:black">@item.Ten</a></h4>
+                                    <h5>@String.Format("{0:0,0}",@item.Gia) VNĐ</h5>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        @foreach (var item in Model)
-                        {
-                            <div class="col-lg-4 col-md-6 col-sm-6">
-                                <div class="product__item">
-                                    <div class="product__item__pic set-bg" data-setbg="@item.Hinh">
-                                        <ul class="product__item__pic__hover">
-                                            <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="product__item__text">
-                                        <h4><a href="@Url.Action("Details", "SanPhams", new { @id = item.MaSP})" style="text-decoration:none; color:black">@item.Ten</a></h4>
-                                        <h5>@String.Format("{0:0,0}",@item.Gia) VNĐ</h5>
-                                    </div>
-                                </div>
-                            </div>
-                        }
+                    }
+                    <div>
                         <div>
-                            <div>
-                                Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) /
-                                @Model.PageCount
-                            </div>
-                            <div class="MenuTrang">
-                                @Html.PagedListPager(Model, page => Url.Action("Index", new
-                                {
-                                    page = page
-                                }))
-                            </div>
+                            Trang @(Model.SanPhams.PageCount < Model.SanPhams.PageNumber ? 0 : Model.SanPhams.PageNumber) / @Model.SanPhams.PageCount
+                        </div>
+                        <div class="MenuTrang">
+                            @Html.PagedListPager(Model.SanPhams, page => Url.Action("Index", new { page = page }))
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
 
-    <style>
-        .MenuTrang li {
-            display: inline;
-        }
-    </style>
-    <style type="text/css">
-        #mau-nut a {
-            clear: both;
-            background-color: orange;
-            color: snow;
-        }
+<style>
+    .MenuTrang li {
+        display: inline;
+    }
+</style>
+<style type="text/css">
+    #mau-nut a {
+        clear: both;
+        background-color: orange;
+        color: snow;
+    }
 
-            #mau-nut a:hover {
-                background-color: darkcyan;
-                color: snow;
+    #mau-nut a:hover {
+        background-color: darkcyan;
+        color: snow;
+    }
+</style>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script>
+    $(document).ready(function () {
+        var maxLength = 100;
+        $(".show-read-more").each(function () {
+            var myStr = $(this).text();
+            if ($.trim(myStr).length > maxLength) {
+                var newStr = myStr.substring(0, maxLength);
+                var removedStr = myStr.substring(maxLength, $.trim(myStr).length);
+                $(this).empty().html(newStr);
+
+                $(this).append(' <a href="javascript:void(0);" class="read-more">đọc tiếp...</a>');
+                $(this).append('<span class="more-text">' + removedStr + '</span>');
             }
-    </style>
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            var maxLength = 100;
-            $(".show-read-more").each(function () {
-                var myStr = $(this).text();
-                if ($.trim(myStr).length > maxLength) {
-                    var newStr = myStr.substring(0, maxLength);
-                    var removedStr = myStr.substring(maxLength, $.trim(myStr).length);
-                    $(this).empty().html(newStr);
-
-                    $(this).append(' <a href="javascript:void(0);" class="read-more">đọc tiếp...</a>');
-                    $(this).append('<span class="more-text">' + removedStr + '</span>');
-                }
-            });
-            $(".read-more").click(function () {
-                $(this).siblings(".more-text").contents().unwrap();
-                $(this).remove();
-            });
         });
-    </script>
-    <style>
-        .show-read-more .more-text {
-            display: none;
-        }
-    </style>
+        $(".read-more").click(function () {
+            $(this).siblings(".more-text").contents().unwrap();
+            $(this).remove();
+        });
+    });
+</script>
+<style>
+    .show-read-more .more-text {
+        display: none;
+    }
+</style>
