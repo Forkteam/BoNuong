@@ -84,7 +84,7 @@
         </div>
         <nav class="humberger__menu__nav mobile-menu">
             <ul>
-                <li class="active">@Html.ActionLink("Trang chủ", "Index", "Home")</li>
+                <li>@Html.ActionLink("Trang chủ", "Index", "Home")</li>
                 <li>@Html.ActionLink("Sản phẩm", "Index", "SanPhams")</li>
                 <li>@Html.ActionLink("Giỏ hàng", "GioHang", "GioHang")</li>
                 @*<li>
@@ -298,13 +298,8 @@
     <script src="/Content/js/main-auth.js"></script>
     <script>
         Array.from($('.header__menu ul li a')).forEach(function (item) {
-            var href = item.href.split('/')[3]
-            var location = window.location.href.split('/')[3]
-            var classList = item.parentElement.classList
-            if (href == location) classList.add('active')
-            else if (href == location) classList.add('active')
-            else if (href == location) classList.add('active')
-            else if (href == location) classList.add('active')
+            if (item.href.split('/')[3] == window.location.href.split('/')[3])
+                item.parentElement.classList.add('active')
         })
     </script>
 </body>
