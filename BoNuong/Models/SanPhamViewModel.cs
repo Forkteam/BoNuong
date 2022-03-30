@@ -8,6 +8,6 @@ namespace BoNuong.Models
     public class SanPhamViewModel
     {
         public IEnumerable<LoaiSP> LoaiSPs { get; set; }
-        public IEnumerable<SanPham> SanPhams { get; set; }
+        public PagedList.PagedList<SanPham> SanPhams { get; set; }
     }
 }
