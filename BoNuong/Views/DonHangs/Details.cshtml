@@ -1,51 +1,58 @@
-﻿@model BoNuong.Models.DonHang
+﻿@model BoNuong.Models.LinQ.DonHang
 
 @{
     ViewBag.Title = "Details";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>Details</h2>
+<div id="layoutSidenav_content">
+    <main>
+        <div class="container-fluid px-4">
 
-<div>
-    <h4>DonHang</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.TrangThaiGiaoHang)
-        </dt>
+            <h2>Thông tin chi tiết</h2>
 
-        <dd>
-            @Html.DisplayFor(model => model.TrangThaiGiaoHang)
-        </dd>
+            <div>
+                <h4>Đơn hàng</h4>
+                <hr />
+                <dl class="dl-horizontal">
+                    <dt>
+                        Trạng thái giao hàng
+                    </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.NgayDat)
-        </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.TrangThaiGiaoHang)
+                    </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.NgayDat)
-        </dd>
+                    <dt>
+                       Ngày đặt
+                    </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.NgayGiao)
-        </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.NgayDat)
+                    </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.NgayGiao)
-        </dd>
+                    <dt>
+                       Ngày giao
+                    </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.MaKH)
-        </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.NgayGiao)
+                    </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.MaKH)
-        </dd>
+                    <dt>
+                        Email
+                    </dt>
 
-    </dl>
+                    <dd>
+                        @Html.DisplayFor(model => model.AspNetUser.Email)
+                    </dd>
+
+                </dl>
+            </div>
+            <p>
+                @Html.ActionLink("Sửa", "Edit", new { id = Model.MaDH }) |
+                @Html.ActionLink("Trở về", "Index")
+            </p>
+        </div>
+    </main>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.MaDH }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
