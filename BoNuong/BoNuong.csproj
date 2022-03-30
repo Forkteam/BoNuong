@@ -197,6 +197,7 @@
     <Compile Include="Models\LoaiSP.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\SanPham.cs" />
+    <Compile Include="Models\SanPhamViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -505,6 +506,7 @@
     <Content Include="Views\Home\Shopdetails.cshtml" />
     <Content Include="Views\Home\Shopgrid.cshtml" />
     <Content Include="Views\GioHang\GioHang.cshtml" />
+    <Content Include="Views\SanPhams\trangmau.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

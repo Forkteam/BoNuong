@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using BoNuong.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
+using PagedList;
 
 namespace BoNuong.Controllers
 {
@@ -17,10 +18,19 @@ namespace BoNuong.Controllers
         private BoNuongContext db = new BoNuongContext();
 
         // GET: SanPhams
-        public ActionResult Index()
+
+        public ActionResult Index(int? page)
         {
-            var sanPham = db.SanPham.Include(s => s.LoaiSP);
-            return View(sanPham.ToList());
+           
+           
+            if (page == null) page = 1;
+            var all_sach = (from s in db.SanPham select s).OrderBy(m => m.MaSP);
+            int pageSize = 12;
+            int pageNum = page?? 1;
+
+            ViewBag.AllProduct = all_sach.ToPagedList(pageNum, pageSize);
+            
+            return View(all_sach.ToPagedList(pageNum, pageSize));
         }
 
         // GET: SanPhams/Details/5
@@ -159,6 +169,15 @@ namespace BoNuong.Controllers
             }
             file.SaveAs(Server.MapPath("~/Content/img/" + file.FileName));
             return "/Content/img/" + file.FileName;
+        }
+
+        public ActionResult trangmau(int? page)
+        {
+            if (page == null) page = 1;
+            var all_sach = (from s in db.SanPham select s).OrderBy(m => m.MaSP);
+            int pageSize = 12;
+            int pageNum = page ?? 1;
+            return View(all_sach.ToPagedList(pageNum, pageSize));
         }
     }
 }
