@@ -64,7 +64,16 @@ namespace BoNuong.Controllers
 
             return View(donHang);
         }
-
+        
+        public ActionResult EditTT(int id, FormCollection conlection)
+        {
+            Models.DonHang donHang = db.DonHang.Find(id);
+            if (donHang != null)
+            {
+                donHang.TrangThaiGiaoHang = bool.Parse(conlection["txtSolg"].ToString());
+            }
+            return RedirectToAction("DonHangs");
+        }
         // GET: DonHangs/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -80,6 +89,7 @@ namespace BoNuong.Controllers
             ViewBag.MaKH = new SelectList(data.AspNetUsers, "Id", "Email");
             return View(donHang);
         }
+     
 
         // POST: DonHangs/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
@@ -96,7 +106,7 @@ namespace BoNuong.Controllers
             }
             return View(donHang);
         }
-
+        
         // GET: DonHangs/Delete/5
         public ActionResult Delete(int? id)
         {

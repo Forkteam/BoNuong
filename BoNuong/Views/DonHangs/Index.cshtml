@@ -35,25 +35,41 @@
 
                 @foreach (var item in Model)
                 {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.TrangThaiGiaoHang)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.NgayDat)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.NgayGiao)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.AspNetUser.Email)
-                        </td>
-                        <td>
-                            @Html.ActionLink("Sửa", "Edit", new { id = item.MaDH }) |
-                            @Html.ActionLink("Chi tiết", "Details", new { id = item.MaDH }) |
-                            @Html.ActionLink("Xóa", "Delete", new { id = item.MaDH })
-                        </td>
-                    </tr>
+
+
+            <tr>
+
+                <!--<td class="checkbox">
+        @Html.EditorFor(modelItem => item.TrangThaiGiaoHang)-->
+                @*<a href="@Url.Action("Edit","DonHangs",new { @tt = Html.DisplayFor(modelItem => item.TrangThaiGiaoHang), @id = item.MaDH})">Cập nhật</a>*@
+                @*<input type="submit" id="cbTrangThai" name="cbTrangThai"  class="btn btn-danger" style="zoom: 0.8;" />*@
+
+                <!--</td>-->
+                @using (Html.BeginForm("EditTT", "DonHangs", new { @id = item.MaDH }))
+                {
+                    <td class="checkbox">
+                        @Html.EditorFor(modelItem => item.TrangThaiGiaoHang)
+                        <input type="text" min="1" name="txtSolg" value="@item.TrangThaiGiaoHang" />
+                    <td> <input type="submit" value="Cập nhật" class="btn btn-success" /> </td>
+                    </td>
+                }
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.NgayDat)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NgayGiao)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AspNetUser.Email)
+                </td>
+
+                <td>
+                    @Html.ActionLink("Sửa", "Edit", new { id = item.MaDH }) |
+                    @Html.ActionLink("Chi tiết", "Details", new { id = item.MaDH }) |
+                    @Html.ActionLink("Xóa", "Delete", new { id = item.MaDH })
+                </td>
+            </tr>
                 }
 
             </table>
