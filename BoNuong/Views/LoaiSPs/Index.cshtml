@@ -9,30 +9,34 @@
 <div id="layoutSidenav_content">
     <main>
         <div class="container-fluid px-4">
-            <h2>Danh sách loại sản phẩm</h2>
-            <p>
+            <h2 style="margin-bottom:20px; margin-top:20px; text-decoration:none;">Danh sách loại sản phẩm</h2>
+            <p class="btn btn-info">
                 @Html.ActionLink("Thêm loại sản phẩm", "Create")
             </p>
-            <table class="table">
-                <tr>
-                    <th>
-                        Tên loại sản phẩm
-                    </th>
-                    <th>Thao tác</th>
-                </tr>
-                @foreach (var item in Model)
-                {
+            <table class="table table-bordered table-dark">
+                <thead class="thead-dark">
                     <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.TenLoai)
-                        </td>
-                        <td>
-                            @Html.ActionLink("Sửa", "Edit", new { id = item.MaLoai }) |
-                            @Html.ActionLink("Chi tiết", "Details", new { id = item.MaLoai }) |
-                            @Html.ActionLink("Xóa", "Delete", new { id = item.MaLoai })
-                        </td>
+                        <th>
+                            Tên loại sản phẩm
+                        </th>
+                        <th>Thao tác</th>
                     </tr>
-                }
+                </thead>
+                <tbody class="table-light">
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TenLoai)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Sửa", "Edit", new { id = item.MaLoai }, new { @class = "btn btn-info" }) |
+                                @Html.ActionLink("Chi tiết", "Details", new { id = item.MaLoai }, new { @class = "btn btn-warning" }) |
+                                @Html.ActionLink("Xóa", "Delete", new { id = item.MaLoai }, new { @class = "btn btn-danger" })
+                            </td>
+                        </tr>
+                    }
+                </tbody>
             </table>
             <div>
                 <div>

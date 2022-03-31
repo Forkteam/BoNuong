@@ -12,8 +12,8 @@
             <h2>Danh sách đơn hàng</h2>
 
             @*<p>
-                @Html.ActionLink("Tạo đơn hàng mới", "Create")
-            </p>*@
+                    @Html.ActionLink("Tạo đơn hàng mới", "Create")
+                </p>*@
             <table class="table">
                 <tr>
                     <th>
@@ -68,3 +68,48 @@
         </div>
     </main>
 </div>
+
+
+<style>
+    .MenuTrang li {
+        display: inline;
+    }
+</style>
+<style type="text/css">
+    #mau-nut a {
+        clear: both;
+        background-color: orange;
+        color: snow;
+    }
+
+        #mau-nut a:hover {
+            background-color: darkcyan;
+            color: snow;
+        }
+</style>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script>
+    $(document).ready(function () {
+        var maxLength = 100;
+        $(".show-read-more").each(function () {
+            var myStr = $(this).text();
+            if ($.trim(myStr).length > maxLength) {
+                var newStr = myStr.substring(0, maxLength);
+                var removedStr = myStr.substring(maxLength, $.trim(myStr).length);
+                $(this).empty().html(newStr);
+
+                $(this).append(' <a href="javascript:void(0);" class="read-more">đọc tiếp...</a>');
+                $(this).append('<span class="more-text">' + removedStr + '</span>');
+            }
+        });
+        $(".read-more").click(function () {
+            $(this).siblings(".more-text").contents().unwrap();
+            $(this).remove();
+        });
+    });
+</script>
+<style>
+    .show-read-more .more-text {
+        display: none;
+    }
+</style>
