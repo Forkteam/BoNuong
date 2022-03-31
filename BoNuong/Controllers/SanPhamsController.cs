@@ -23,18 +23,28 @@ namespace BoNuong.Controllers
         {
             var loaiSP = db.LoaiSP.ToList();
             //if (page == null) page = 1;
-            var all_sach = (from s in db.SanPham select s).OrderBy(m => m.MaSP);
+            var all_sanPham = (from s in db.SanPham select s).OrderBy(m => m.MaSP);
             int pageSize = 12;
             int pageNum = page ?? 1;
             SanPhamViewModel sp = new SanPhamViewModel
             {
                 LoaiSPs = loaiSP,
-                SanPhams = (PagedList<SanPham>)all_sach.ToPagedList(pageNum, pageSize)
+                SanPhams = (PagedList<SanPham>)all_sanPham.ToPagedList(pageNum, pageSize)
             };
 
-            //ViewBag.AllProduct = all_sach.ToPagedList(pageNum, pageSize);
+            //ViewBag.AllProduct = all_sanPham.ToPagedList(pageNum, pageSize);
 
             return View(sp);
+        }
+
+        // GET: SanPhams Admin
+
+        public ActionResult IndexAdmin(int? page)
+        {
+            var all_sanPham = db.SanPham.ToList();
+            int pageSize = 5;
+            int pageNum = page ?? 1;
+            return View(all_sanPham.ToPagedList(pageNum, pageSize));
         }
 
         // GET: SanPhams/Details/5
@@ -53,6 +63,21 @@ namespace BoNuong.Controllers
             {
                 ApplicationUser user = System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>().FindById(i.MaKH);
                 i.Name = user.Name;
+            }
+            return View(sanPham);
+        }
+
+        // GET: SanPhams/Details/5 Admin
+        public ActionResult DetailsAdmin(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            SanPham sanPham = db.SanPham.Find(id);
+            if (sanPham == null)
+            {
+                return HttpNotFound();
             }
             return View(sanPham);
         }

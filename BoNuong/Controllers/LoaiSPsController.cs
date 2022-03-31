@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using BoNuong.Models;
+using PagedList;
 
 namespace BoNuong.Controllers
 {
@@ -15,9 +16,12 @@ namespace BoNuong.Controllers
         private BoNuongContext db = new BoNuongContext();
 
         // GET: LoaiSPs
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
-            return View(db.LoaiSP.ToList());
+            var all_loaiSP = db.LoaiSP.ToList();
+            int pageSize = 10;
+            int pageNum = page ?? 1;
+            return View(all_loaiSP.ToPagedList(pageNum, pageSize));
         }
 
         // GET: LoaiSPs/Details/5

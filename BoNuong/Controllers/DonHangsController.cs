@@ -7,17 +7,23 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using BoNuong.Models;
+using BoNuong.Models.LinQ;
+using PagedList;
 
 namespace BoNuong.Controllers
 {
     public class DonHangsController : Controller
     {
         private BoNuongContext db = new BoNuongContext();
+        private MyDataDataContext data = new MyDataDataContext();
 
         // GET: DonHangs
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
-            return View(db.DonHang.ToList());
+            var all_donHang = data.DonHangs.ToList();
+            int pageSize = 10;
+            int pageNum = page ?? 1;
+            return View(all_donHang.ToPagedList(pageNum, pageSize));
         }
 
         // GET: DonHangs/Details/5
@@ -27,7 +33,7 @@ namespace BoNuong.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            DonHang donHang = db.DonHang.Find(id);
+            Models.LinQ.DonHang donHang = data.DonHangs.FirstOrDefault(d => d.MaDH == id);
             if (donHang == null)
             {
                 return HttpNotFound();
@@ -38,6 +44,7 @@ namespace BoNuong.Controllers
         // GET: DonHangs/Create
         public ActionResult Create()
         {
+            ViewBag.MaKH = new SelectList(data.AspNetUsers, "Id", "Email");
             return View();
         }
 
@@ -46,7 +53,7 @@ namespace BoNuong.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "MaDH,TrangThaiGiaoHang,NgayDat,NgayGiao,MaKH")] DonHang donHang)
+        public ActionResult Create([Bind(Include = "MaDH,TrangThaiGiaoHang,NgayDat,NgayGiao,MaKH")] Models.DonHang donHang)
         {
             if (ModelState.IsValid)
             {
@@ -65,11 +72,12 @@ namespace BoNuong.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            DonHang donHang = db.DonHang.Find(id);
+            Models.DonHang donHang = db.DonHang.Find(id);
             if (donHang == null)
             {
                 return HttpNotFound();
             }
+            ViewBag.MaKH = new SelectList(data.AspNetUsers, "Id", "Email");
             return View(donHang);
         }
 
@@ -78,7 +86,7 @@ namespace BoNuong.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "MaDH,TrangThaiGiaoHang,NgayDat,NgayGiao,MaKH")] DonHang donHang)
+        public ActionResult Edit([Bind(Include = "MaDH,TrangThaiGiaoHang,NgayDat,NgayGiao,MaKH")] Models.DonHang donHang)
         {
             if (ModelState.IsValid)
             {
@@ -96,7 +104,7 @@ namespace BoNuong.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            DonHang donHang = db.DonHang.Find(id);
+            Models.LinQ.DonHang donHang = data.DonHangs.FirstOrDefault(d => d.MaDH == id);
             if (donHang == null)
             {
                 return HttpNotFound();
@@ -109,7 +117,7 @@ namespace BoNuong.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            DonHang donHang = db.DonHang.Find(id);
+            Models.DonHang donHang = db.DonHang.Find(id);
             db.DonHang.Remove(donHang);
             db.SaveChanges();
             return RedirectToAction("Index");
