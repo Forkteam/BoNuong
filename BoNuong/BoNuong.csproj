@@ -196,6 +196,7 @@
     <Compile Include="Models\BinhLuan.cs" />
     <Compile Include="Models\BoNuongContext.cs" />
     <Compile Include="Models\ChiTietDonHang.cs" />
+    <Compile Include="Models\SanPhamDetailModel.cs" />
     <Compile Include="Models\DonHang.cs" />
     <Compile Include="Models\GioHang.cs" />
     <Compile Include="Models\IdentityModels.cs" />
