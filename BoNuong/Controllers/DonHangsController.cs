@@ -65,14 +65,19 @@ namespace BoNuong.Controllers
             return View(donHang);
         }
         
-        public ActionResult EditTT(int id, FormCollection conlection)
+        public ActionResult EditTT(int id, FormCollection collection)
         {
             Models.DonHang donHang = db.DonHang.Find(id);
             if (donHang != null)
             {
-                donHang.TrangThaiGiaoHang = bool.Parse(conlection["txtSolg"].ToString());
+                if (collection["item.TrangThaiGiaoHang"].ToString() == "true")
+                    donHang.TrangThaiGiaoHang = true;
+                else
+                    donHang.TrangThaiGiaoHang = false;
+                Edit(donHang);
+               
             }
-            return RedirectToAction("DonHangs");
+            return RedirectToAction("Index");
         }
         // GET: DonHangs/Edit/5
         public ActionResult Edit(int? id)

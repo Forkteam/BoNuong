@@ -104,7 +104,6 @@ D:\BoNuong\BoNuong\bin\roslyn\vbc.exe.config
 D:\BoNuong\BoNuong\bin\roslyn\vbc.rsp
 D:\BoNuong\BoNuong\bin\roslyn\VBCSCompiler.exe
 D:\BoNuong\BoNuong\bin\roslyn\VBCSCompiler.exe.config
-D:\BoNuong\BoNuong\obj\Debug\BoNuong.csproj.AssemblyReference.cache
 D:\BoNuong\BoNuong\obj\Debug\BoNuong.csproj.CoreCompileInputs.cache
 D:\BoNuong\BoNuong\obj\Debug\BoNuong.csproj.CopyComplete
 D:\BoNuong\BoNuong\obj\Debug\BoNuong.dll
@@ -326,3 +325,4 @@ C:\Users\zpc\Desktop\BoNuong\BoNuong\obj\Debug\BoNuong.csproj.CopyComplete
 C:\Users\zpc\Desktop\BoNuong\BoNuong\obj\Debug\BoNuong.dll
 C:\Users\zpc\Desktop\BoNuong\BoNuong\obj\Debug\BoNuong.pdb
 C:\Users\apple\source\repos\BoNuong\BoNuong\obj\Debug\BoNuong.csproj.AssemblyReference.cache
+D:\BoNuong\BoNuong\obj\Debug\BoNuong.csproj.AssemblyReference.cache

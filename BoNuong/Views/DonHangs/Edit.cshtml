@@ -25,7 +25,20 @@
                         <strong class="control-label col-md-2">Trạng thái giao hàng</strong>
                         <div class="col-md-10">
                             <div class="checkbox">
-                                @Html.EditorFor(model => model.TrangThaiGiaoHang)
+                                @if(Model.TrangThaiGiaoHang == true)
+                                {
+                                    <select class="list-box tri-state" id="TrangThaiGiaoHang" name="TrangThaiGiaoHang">
+                                        <option selected="selected" value="true">Đã giao</option>
+                                        <option value="false">Chưa giao</option>
+                                    </select>
+                                }
+                                else
+                                {
+                                    <select class="list-box tri-state" id="TrangThaiGiaoHang" name="TrangThaiGiaoHang">
+                                        <option value="true">Đã giao</option>
+                                        <option selected="selected" value="false">Chưa giao</option>
+                                    </select>
+                                }
                                 @Html.ValidationMessageFor(model => model.TrangThaiGiaoHang, "", new { @class = "text-danger" })
                             </div>
                         </div>

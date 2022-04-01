@@ -21,7 +21,18 @@
                     </dt>
 
                     <dd>
-                        @Html.DisplayFor(model => model.TrangThaiGiaoHang)
+                        @if (Model.TrangThaiGiaoHang == true)
+                        {
+                            <label class="list-box tri-state" id="TrangThaiGiaoHang" name="TrangThaiGiaoHang">
+                                <a value="true">Đã giao</a>
+                            </label>
+                        }
+                        else
+                        {
+                            <label class="list-box tri-state" id="TrangThaiGiaoHang" name="TrangThaiGiaoHang">
+                                <a value="true">Chưa giao</a>
+                            </label>
+                        }
                     </dd>
 
                     <dt>
