@@ -52,11 +52,13 @@
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="PagedList">
-      <HintPath>..\..\lap-trinh-web\Lab03-LT Web\PagedList.dll</HintPath>
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="PagedList.Mvc">
-      <HintPath>..\..\lap-trinh-web\Lab03-LT Web\PagedList.Mvc.dll</HintPath>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -186,6 +188,7 @@
     <Compile Include="Controllers\LoaiSPsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\SanPhamsController.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -193,6 +196,7 @@
     <Compile Include="Models\BinhLuan.cs" />
     <Compile Include="Models\BoNuongContext.cs" />
     <Compile Include="Models\ChiTietDonHang.cs" />
+    <Compile Include="Models\SanPhamDetailModel.cs" />
     <Compile Include="Models\DonHang.cs" />
     <Compile Include="Models\GioHang.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -480,6 +484,7 @@
     <Content Include="Content\js\plugins\typed.js-master\typed.js-master\dist\typed.min.js" />
     <Content Include="Content\js\plugins\typed.js-master\typed.js-master\js\typed.js" />
     <Content Include="Content\js\plugins\typed.js-master\typed.js-master\LICENSE.txt" />
+    <Content Include="Content\PagedList.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -663,6 +668,13 @@
     <Content Include="Views\Admin\Register.cshtml" />
     <Content Include="Views\Admin\Tables.cshtml" />
     <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
+    <Content Include="Views\SanPhams\IndexAdmin.cshtml" />
+    <Content Include="Views\SanPhams\DetailsAdmin.cshtml" />
+    <Content Include="Views\Users\Create.cshtml" />
+    <Content Include="Views\Users\Delete.cshtml" />
+    <Content Include="Views\Users\Details.cshtml" />
+    <Content Include="Views\Users\Edit.cshtml" />
+    <Content Include="Views\Users\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

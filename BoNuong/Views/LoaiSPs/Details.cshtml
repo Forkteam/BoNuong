@@ -2,26 +2,36 @@
 
 @{
     ViewBag.Title = "Details";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>Details</h2>
+<div id="layoutSidenav_content">
+    <main>
+        <div class="container-fluid px-4" style=" margin-top:20px;">
 
-<div>
-    <h4>LoaiSP</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.TenLoai)
-        </dt>
+            <h2>Thông tin chi tiết</h2>
 
-        <dd>
-            @Html.DisplayFor(model => model.TenLoai)
-        </dd>
+            <div>
+                <h4>Loại sản phẩm</h4>
+                <hr />
+                <dl class="dl-horizontal">
+                    <dt>
+                        Tên loại
+                    </dt>
 
-    </dl>
+                    <dd>
+                        @Html.DisplayFor(model => model.TenLoai)
+                    </dd>
+
+                </dl>
+            </div>
+            <p>
+                @Html.ActionLink("Sửa", "Edit", new { id = Model.MaLoai }, new { @class = "btn btn-warning" }) |
+                <a class="btn btn-warning" href='@Url.Action("Index", "LoaiSPs")' style="margin:10px 0px;">
+                    Trở về
+                </a>
+            </p>
+        </div>
+    </main>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.MaLoai }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+

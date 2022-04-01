@@ -84,7 +84,7 @@
         </div>
         <nav class="humberger__menu__nav mobile-menu">
             <ul>
-                <li class="active">@Html.ActionLink("Trang chủ", "Index", "Home")</li>
+                <li>@Html.ActionLink("Trang chủ", "Index", "Home")</li>
                 <li>@Html.ActionLink("Sản phẩm", "Index", "SanPhams")</li>
                 <li>@Html.ActionLink("Giỏ hàng", "GioHang", "GioHang")</li>
                 @*<li>
@@ -164,7 +164,7 @@
                 <div class="col-lg-6">
                     <nav class="header__menu">
                         <ul>
-                            <li class="active">@Html.ActionLink("Trang chủ", "Index", "Home")</li>
+                            <li>@Html.ActionLink("Trang chủ", "Index", "Home")</li>
                             <li>@Html.ActionLink("Sản phẩm", "Index", "SanPhams")</li>
                             <li>@Html.ActionLink("Giỏ hàng", "GioHang", "GioHang")</li>
                             @*<li>
@@ -330,7 +330,12 @@
     <script src="https://maps.googleapis.com/maps/api/js"></script>
     <script src="/Content/js/plugins/Magnific-Popup-master/Magnific-Popup-master/dist/jquery.magnific-popup.js"></script>
     <script src="/Content/js/main-auth.js"></script>
-
+    <script>
+        Array.from($('.header__menu ul li a')).forEach(function (item) {
+            if (item.href.split('/')[3] == window.location.href.split('/')[3])
+                item.parentElement.classList.add('active')
+        })
+    </script>
 </body>
 @RenderSection("scripts", required: false)
 @RenderSection("upload", required: false)
