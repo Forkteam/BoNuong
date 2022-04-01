@@ -48,7 +48,7 @@ namespace BoNuong.Controllers
         }
 
         // GET: SanPhams/Details/5
-        public ActionResult Details(int? id,int? page)
+        public ActionResult Details(int? id, int? page)
         {
             if (id == null)
             {

@@ -14,12 +14,12 @@
             <div>
                 <h4>Sản phẩm</h4>
                 <hr />
-                <dl class="dl-horizontal">
+                <dl class="dl-horizontal" style="margin-left:20px">
                     <dt>
-                        Tên loại
+                        Loại
                     </dt>
 
-                    <dd>
+                    <dd  style="color:darkorange" style="color:darkorange">
                         @Html.DisplayFor(model => model.LoaiSP.TenLoai)
                     </dd>
 
@@ -27,7 +27,7 @@
                         Tên sản phẩm
                     </dt>
 
-                    <dd>
+                    <dd  style="color:darkorange">
                         @Html.DisplayFor(model => model.Ten)
                     </dd>
 
@@ -35,7 +35,7 @@
                         Mô tả
                     </dt>
 
-                    <dd>
+                    <dd  style="color:darkorange">
                         @Html.DisplayFor(model => model.MoTa)
                     </dd>
 
@@ -43,7 +43,7 @@
                         Giá
                     </dt>
 
-                    <dd>
+                    <dd  style="color:darkorange">
                         @Html.DisplayFor(model => model.Gia)
                     </dd>
 
@@ -51,7 +51,7 @@
                         Số lượng
                     </dt>
 
-                    <dd>
+                    <dd  style="color:darkorange">
                         @Html.DisplayFor(model => model.SoLuong)
                     </dd>
 
@@ -59,7 +59,7 @@
                         Đơn vị
                     </dt>
 
-                    <dd>
+                    <dd  style="color:darkorange">
                         @Html.DisplayFor(model => model.DonVi)
                     </dd>
 
@@ -67,7 +67,7 @@
                         Giảm giá
                     </dt>
 
-                    <dd>
+                    <dd  style="color:darkorange">
                         @Html.DisplayFor(model => model.GiamGia)
                     </dd>
 
@@ -75,15 +75,17 @@
                         Hình
                     </dt>
 
-                    <dd>
+                    <dd  style="color:darkorange">
                         <img src="@Model.Hinh" alt="thumbnail" width="250" />
                     </dd>
 
                 </dl>
             </div>
             <p>
-                @Html.ActionLink("Sửa", "Edit", new { id = Model.MaSP }) |
-                @Html.ActionLink("Trở về", "IndexAdmin")
+                @Html.ActionLink("Sửa", "Edit", new { id = Model.MaSP }, new { @class = "btn btn-info" }) |
+                <a class="btn btn-success" href='@Url.Action("IndexAdmin", "SanPhams")' style="margin:10px 0px;">
+                    Trở về
+                </a>
             </p>
         </div>
     </main>
