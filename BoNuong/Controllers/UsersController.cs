@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using BoNuong.Models;
+using PagedList;
 
 namespace BoNuong.Controllers
 {
@@ -16,7 +17,7 @@ namespace BoNuong.Controllers
 
         // GET: Users
         [Authorize]
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
             var user = db.Users.FirstOrDefault(u => u.UserName == User.Identity.Name);
             if (user == null)
@@ -26,7 +27,10 @@ namespace BoNuong.Controllers
                 return RedirectToAction("Error401", "Admin");
             if (userExist.RoleId != "1")
                 return RedirectToAction("Error401", "Admin");
-            return View(db.Users.Where(u => u.Roles.FirstOrDefault(r => r.UserId == u.Id).RoleId != "1").ToList());
+            var all_user = db.Users.Where(u => u.Roles.FirstOrDefault(r => r.UserId == u.Id).RoleId != "1").ToList();
+            int pageSize = 10;
+            int pageNum = page ?? 1;
+            return View(all_user.ToPagedList(pageNum, pageSize));
         }
 
         // GET: Users/Details/5
