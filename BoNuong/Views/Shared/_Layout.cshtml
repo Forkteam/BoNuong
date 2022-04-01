@@ -50,13 +50,8 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" rel="stylesheet" />
 </head>
 <body>
-    <!-- Page Preloder -->
-    <div id="preloder">
-        <div class="loader"></div>
-    </div>
 
     <!-- Humberger Begin -->
-    <div class="humberger__menu__overlay"></div>
     <div class="humberger__menu__wrapper">
         <div class="humberger__menu__logo">
             <a href="@Url.Action("Index","Home")"><img src="/Content/img/logo.png" alt=""></a>
@@ -88,14 +83,14 @@
                 <li>@Html.ActionLink("Sản phẩm", "Index", "SanPhams")</li>
                 <li>@Html.ActionLink("Giỏ hàng", "GioHang", "GioHang")</li>
                 @*<li>
-                    <a href="#">Pages</a>
-                    <ul class="header__menu__dropdown">
-                        <li>@Html.ActionLink("Shop Details", "Shopdetails", "Home")</li>
-                        <li>@Html.ActionLink("Shoping Cart", "Shopcart", "Home")</li>
-                        <li>@Html.ActionLink("Check Out", "Checkout", "Home")</li>
-                        <li>@Html.ActionLink("Blog Details", "Blogdetails", "Home")</li>
-                    </ul>
-                </li>*@
+                        <a href="#">Pages</a>
+                        <ul class="header__menu__dropdown">
+                            <li>@Html.ActionLink("Shop Details", "Shopdetails", "Home")</li>
+                            <li>@Html.ActionLink("Shoping Cart", "Shopcart", "Home")</li>
+                            <li>@Html.ActionLink("Check Out", "Checkout", "Home")</li>
+                            <li>@Html.ActionLink("Blog Details", "Blogdetails", "Home")</li>
+                        </ul>
+                    </li>*@
                 @*<li>@Html.ActionLink("Blog", "Blog", "Home")</li>*@
                 <li>@Html.ActionLink("Liên hệ", "Contact", "Home")</li>
             </ul>
@@ -277,6 +272,40 @@
         </div>
     </footer>
 
+    <!-- Messenger Plugin chat Code -->
+    <div id="fb-root"></div>
+
+    <!-- Your Plugin chat code -->
+    <div id="fb-customer-chat" class="fb-customerchat">
+    </div>
+
+    <script>
+        var chatbox = document.getElementById('fb-customer-chat');
+        chatbox.setAttribute("page_id", "107187518619137");
+        chatbox.setAttribute("attribution", "install_email");
+        chatbox.setAttribute("attribution_version", "biz_inbox");
+    </script>
+
+    <!-- Your SDK code -->
+    <script>
+        window.fbAsyncInit = function () {
+            FB.init({
+                xfbml: true,
+                version: 'v13.0'
+            });
+        };
+
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = 'https://connect.facebook.net/vi_VN/sdk/xfbml.customerchat.js';
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+
+    <script src="/Scripts/jquery.min.js"></script>
+    <script src="/Scripts/rack_hostsomee.js"></script>
     <script src="/Content/js/jquery-3.3.1.min.js"></script>
     <script src="/Content/js/bootstrap.min.js"></script>
     <script src="/Content/js/jquery.nice-select.min.js"></script>
@@ -296,6 +325,7 @@
     <script src="https://maps.googleapis.com/maps/api/js"></script>
     <script src="/Content/js/plugins/Magnific-Popup-master/Magnific-Popup-master/dist/jquery.magnific-popup.js"></script>
     <script src="/Content/js/main-auth.js"></script>
+
 </body>
 @RenderSection("scripts", required: false)
 @RenderSection("upload", required: false)
