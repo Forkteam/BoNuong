@@ -64,7 +64,7 @@ namespace BoNuong.Controllers
 
             return View(donHang);
         }
-        
+
         public ActionResult EditTT(int id, FormCollection collection)
         {
             Models.DonHang donHang = db.DonHang.Find(id);
@@ -75,7 +75,6 @@ namespace BoNuong.Controllers
                 else
                     donHang.TrangThaiGiaoHang = false;
                 Edit(donHang);
-               
             }
             return RedirectToAction("Index");
         }
@@ -94,7 +93,6 @@ namespace BoNuong.Controllers
             ViewBag.MaKH = new SelectList(data.AspNetUsers, "Id", "Email");
             return View(donHang);
         }
-     
 
         // POST: DonHangs/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
@@ -111,7 +109,7 @@ namespace BoNuong.Controllers
             }
             return View(donHang);
         }
-        
+
         // GET: DonHangs/Delete/5
         public ActionResult Delete(int? id)
         {
