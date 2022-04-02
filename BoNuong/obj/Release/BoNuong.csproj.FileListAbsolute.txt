@@ -1,0 +1,2 @@
+D:\DoAn\BoNuong\BoNuong\obj\Release\BoNuong.csproj.AssemblyReference.cache
+D:\DoAn\BoNuong\BoNuong\obj\Release\BoNuong.csproj.CoreCompileInputs.cache

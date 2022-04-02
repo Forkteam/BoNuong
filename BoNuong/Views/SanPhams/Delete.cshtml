@@ -12,11 +12,10 @@
 
             <h3>Bạn có chắc chắn muốn xóa?</h3>
             <div>
-                <h4>Sản phẩm</h4>
                 <hr />
                 <dl class="dl-horizontal">
                     <dt>
-                        Tên loại
+                        Loại
                     </dt>
 
                     <dd>
@@ -86,8 +85,12 @@
                     @Html.AntiForgeryToken()
 
                     <div class="form-actions no-color">
-                        <input type="submit" value="Xóa" class="btn btn-default" /> |
-                        @Html.ActionLink("Trở về", "IndexAdmin")
+                        <p>
+                            <input type="submit" value="Xóa" class="btn btn-danger" /> |
+                            <a class="btn btn-success" href='@Url.Action("IndexAdmin", "SanPhams")' style="margin:10px 0px;">
+                                Trở về
+                            </a>
+                        </p>
                     </div>
                 }
             </div>
