@@ -17,10 +17,7 @@ namespace BoNuong.Controllers
             List<GioHang> lstGioHang = Session["GioHang"] as List<GioHang>;
             if (lstGioHang == null)
             {
-
                 lstGioHang = new List<GioHang>();
-
-
                 Session["GioHang"] = lstGioHang;
             }
             return lstGioHang;

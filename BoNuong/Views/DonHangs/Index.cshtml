@@ -5,15 +5,14 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
-
 <div id="layoutSidenav_content">
     <main>
         <div class="container-fluid px-4">
             <h2>Danh sách đơn hàng</h2>
 
             @*<p>
-                @Html.ActionLink("Tạo đơn hàng mới", "Create")
-            </p>*@
+                    @Html.ActionLink("Tạo đơn hàng mới", "Create")
+                </p>*@
             <table class="table">
                 <tr>
                     <th>
@@ -35,10 +34,34 @@
 
                 @foreach (var item in Model)
                 {
+
+
                     <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.TrangThaiGiaoHang)
-                        </td>
+
+                        <!--<td class="checkbox">
+                        @Html.EditorFor(modelItem => item.TrangThaiGiaoHang)-->
+                        @*<a href="@Url.Action("Edit","DonHangs",new { @tt = Html.DisplayFor(modelItem => item.TrangThaiGiaoHang), @id = item.MaDH})">Cập nhật</a>*@
+                        @*<input type="submit" id="cbTrangThai" name="cbTrangThai"  class="btn btn-danger" style="zoom: 0.8;" />*@
+
+                        <!--</td>-->
+                        @using (Html.BeginForm("EditTT", "DonHangs", new { @id = item.MaDH }))
+                        {
+                            <td class="checkbox">
+                                <select class="list-box tri-state" id="item_TrangThaiGiaoHang" name="item.TrangThaiGiaoHang">
+                                    @if (item.TrangThaiGiaoHang == true)
+                                    {
+                                        <option selected="selected" value="true">Đã giao</option>
+                                        <option value="false">Chưa giao</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="true">Đã giao</option>
+                                        <option selected="selected" value="false">Chưa giao</option>
+                                    }
+                                </select>
+                                <input type="submit" value="Cập nhật" class="btn btn-success" />
+                            </td>
+                        }
                         <td>
                             @Html.DisplayFor(modelItem => item.NgayDat)
                         </td>
