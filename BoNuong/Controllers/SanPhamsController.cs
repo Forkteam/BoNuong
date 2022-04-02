@@ -19,8 +19,9 @@ namespace BoNuong.Controllers
 
         // GET: SanPhams
 
-        public ActionResult Index(int? page)
+        public ActionResult Index(int? page, string searchString)
         {
+            ViewBag.Keyword = searchString;
             var loaiSP = db.LoaiSP.ToList();
             //if (page == null) page = 1;
             var all_sanPham = (from s in db.SanPham select s).OrderBy(m => m.MaSP);
@@ -28,8 +29,10 @@ namespace BoNuong.Controllers
             int pageNum = page ?? 1;
             SanPhamViewModel sp = new SanPhamViewModel
             {
+
                 LoaiSPs = loaiSP,
-                SanPhams = (PagedList<SanPham>)all_sanPham.ToPagedList(pageNum, pageSize)
+                //SanPhams = (PagedList<SanPham>)all_sanPham.ToPagedList(pageNum, pageSize)
+                SanPhams = (PagedList<SanPham>)SanPham.getAll(searchString).ToPagedList(pageNum, pageSize)
             };
 
             //ViewBag.AllProduct = all_sanPham.ToPagedList(pageNum, pageSize);
@@ -123,6 +126,7 @@ namespace BoNuong.Controllers
             {
                 db.SanPham.Add(sanPham);
                 db.SaveChanges();
+                TempData["AlertMessage"] = "Thêm thành công!";
                 return RedirectToAction("Create");
             }
 
@@ -157,7 +161,8 @@ namespace BoNuong.Controllers
             {
                 db.Entry(sanPham).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                TempData["AlertMessage"] = "Chỉnh sửa thành công!";
+                return RedirectToAction("IndexAdmin");
             }
             ViewBag.MaLoai = new SelectList(db.LoaiSP, "MaLoai", "TenLoai", sanPham.MaLoai);
             return View(sanPham);
@@ -186,7 +191,8 @@ namespace BoNuong.Controllers
             SanPham sanPham = db.SanPham.Find(id);
             db.SanPham.Remove(sanPham);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            TempData["AlertMessage"] = "Xoá thành công!";
+            return RedirectToAction("IndexAdmin");
         }
 
         protected override void Dispose(bool disposing)
