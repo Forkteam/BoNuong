@@ -42,14 +42,15 @@ namespace BoNuong.Controllers
 
         // GET: SanPhams Admin
 
-        public ActionResult IndexAdmin(int? page)
+        public ActionResult IndexAdmin(int? page, string searchString)
         {
             if (!AuthAdmin())
                 return RedirectToAction("Error401", "Admin");
-            var all_sanPham = db.SanPham.ToList();
+            ViewBag.Keyword = searchString;
+            //var all_sanPham = db.SanPham.ToList();
             int pageSize = 5;
             int pageNum = page ?? 1;
-            return View(all_sanPham.ToPagedList(pageNum, pageSize));
+            return View(SanPham.getAll(searchString).ToPagedList(pageNum, pageSize));
         }
 
         // GET: SanPhams/Details/5
