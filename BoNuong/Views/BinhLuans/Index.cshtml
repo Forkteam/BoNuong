@@ -7,11 +7,19 @@
 <div id="layoutSidenav_content">
     <main>
         <div class="container-fluid px-4">
-            <h2 style=" margin-top:20px;">Danh sách bình luận</h2>
+            <div style="display: flex; margin-top: 20px; justify-content: space-between">
+                <h2>Danh sách bình luận</h2>
+                <form>
+                    <div class="input-group">
+                        <input class="form-control" type="text" placeholder="Tìm kiếm..." aria-label="Tìm kiếm..." value="@ViewBag.Keyword" name="searchString" aria-describedby="btnNavbarSearch" />
+                        <button class="btn btn-primary" id="btnNavbarSearch" type="submit"><i class="fas fa-search"></i></button>
+                    </div>
+                </form>
+            </div>
 
             @*<p>
-                    @Html.ActionLink("Tạo bình luận", "Create")
-                </p>*@
+            @Html.ActionLink("Tạo bình luận", "Create")
+        </p>*@
             <table class="table table-bordered table-dark">
                 <thead class="thead-dark">
                     <tr>

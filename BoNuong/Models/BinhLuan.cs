@@ -5,6 +5,7 @@ namespace BoNuong.Models
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
+    using System.Linq;
 
     [Table("BinhLuan")]
     public partial class BinhLuan
@@ -25,5 +26,11 @@ namespace BoNuong.Models
         public virtual SanPham SanPham { get; set; }
 
         public string Name;
+        public static List<BinhLuan> getAll(string searchKey)
+        {
+            BoNuongContext db = new BoNuongContext();
+            searchKey = searchKey + "";
+            return db.BinhLuan.Where(p => p.NoiDung.Contains(searchKey)).ToList();
+        }
     }
 }
