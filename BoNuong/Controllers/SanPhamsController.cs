@@ -48,7 +48,7 @@ namespace BoNuong.Controllers
         }
 
         // GET: SanPhams/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(int? id, int? page)
         {
             if (id == null)
             {
@@ -64,7 +64,14 @@ namespace BoNuong.Controllers
                 ApplicationUser user = System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>().FindById(i.MaKH);
                 i.Name = user.Name;
             }
-            return View(sanPham);
+            int pageSize = 5;
+            int pageNum = page ?? 1;
+            SanPhamDetailModel sp = new SanPhamDetailModel
+            {
+                SanPham = sanPham,
+                BinhLuans = (PagedList<BinhLuan>)sanPham.BinhLuan.ToPagedList(pageNum, pageSize)
+            };
+            return View(sp);
         }
 
         // GET: SanPhams/Details/5 Admin
@@ -116,7 +123,7 @@ namespace BoNuong.Controllers
             {
                 db.SanPham.Add(sanPham);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Create");
             }
 
             ViewBag.MaLoai = new SelectList(db.LoaiSP, "MaLoai", "TenLoai", sanPham.MaLoai);
@@ -197,8 +204,8 @@ namespace BoNuong.Controllers
             {
                 return "";
             }
-            file.SaveAs(Server.MapPath("~/Content/img/" + file.FileName));
-            return "/Content/img/" + file.FileName;
+            file.SaveAs(Server.MapPath("~/Content/images/" + file.FileName));
+            return "/Content/images/" + file.FileName;
         }
     }
 }

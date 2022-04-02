@@ -25,7 +25,6 @@
                             @Html.ValidationMessageFor(model => model.MaLoai, "", new { @class = "text-danger" })
                         </div>
                     </div>
-
                     <div class="form-group">
                         <strong class="control-label col-md-2">Tên sản phẩm</strong>
                         <div class="col-md-10">
@@ -77,22 +76,22 @@
                     <div class="form-group">
                         <strong class="control-label col-md-2">Hình</strong>
                         <div class="col-md-10">
-                            @Html.EditorFor(model => model.Hinh, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Hinh, "", new { @class = "text-danger" })
+                                @Html.EditorFor(model => model.Hinh, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Hinh, "", new { @class = "text-danger" })
                             <input type="file" name="fileUpload" id="fileUpload" accept="image/*" style="display:none;" />
                             <input type="button" id="btnUpload" value="Chọn" class="btn btn-success" />
                         </div>
                     </div>
-
-                    <div class="form-group">
-                        <div class="col-md-offset-2 col-md-10">
-                            <input type="submit" value="Tạo mới" class="btn btn-default" />
-                        </div>
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Thêm" class="btn btn-success" />   |
+                        <a class="btn btn-success" href='@Url.Action("IndexAdmin", "SanPhams")' style="margin:30px 0;">
+                            Trở về
+                        </a>
                     </div>
                 </div>
             }
             @section upload
-{
+            {
                 <script>
                     $(function () {
                         $('#btnUpload').click(function () {
@@ -126,10 +125,6 @@
                     });
                 </script>
             }
-
-            <div>
-                @Html.ActionLink("Trở về", "IndexAdmin")
-            </div>
         </div>
     </main>
 </div>
