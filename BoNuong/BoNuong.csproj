@@ -371,9 +371,11 @@
     <Content Include="Content\images\than-bo-My-ribeye-min.png" />
     <Content Include="Content\images\than-bo-My-steak-min.png" />
     <Content Include="Content\images\thit-bo-uc-min.png" />
+    <Content Include="Content\img\7up-lon-min.png" />
     <Content Include="Content\img\banner.jpg" />
     <Content Include="Content\img\banner\banner-1.jpg" />
     <Content Include="Content\img\banner\banner-2.jpg" />
+    <Content Include="Content\img\beefsteak-mang-tay-min.png" />
     <Content Include="Content\img\blog\blog-1.jpg" />
     <Content Include="Content\img\blog\blog-2.jpg" />
     <Content Include="Content\img\blog\blog-3.jpg" />
@@ -417,6 +419,7 @@
     <Content Include="Content\img\latest-product\lp-2.jpg" />
     <Content Include="Content\img\latest-product\lp-3.jpg" />
     <Content Include="Content\img\logo.png" />
+    <Content Include="Content\img\nam-kim-cham-min.png" />
     <Content Include="Content\img\payment-item.png" />
     <Content Include="Content\img\product\details\product-details-1.jpg" />
     <Content Include="Content\img\product\details\product-details-2.jpg" />
@@ -445,7 +448,10 @@
     <Content Include="Content\img\product\product-7.jpg" />
     <Content Include="Content\img\product\product-8.jpg" />
     <Content Include="Content\img\product\product-9.jpg" />
+    <Content Include="Content\img\shopping-cart-trolley.png" />
     <Content Include="Content\img\success.jpg" />
+    <Content Include="Content\img\sv1.jpg" />
+    <Content Include="Content\img\sv2.jpg" />
     <Content Include="Content\js\bootstrap.min.js" />
     <Content Include="Content\js\jquery-3.3.1.min.js" />
     <Content Include="Content\js\jquery-ui.min.js" />

@@ -220,5 +220,5 @@ C:\Users\zpc\Desktop\BoNuong\BoNuong\obj\Debug\BoNuong.csproj.CoreCompileInputs.
 C:\Users\zpc\Desktop\BoNuong\BoNuong\obj\Debug\BoNuong.csproj.CopyComplete
 C:\Users\zpc\Desktop\BoNuong\BoNuong\obj\Debug\BoNuong.dll
 C:\Users\zpc\Desktop\BoNuong\BoNuong\obj\Debug\BoNuong.pdb
-C:\Users\apple\source\repos\BoNuong\BoNuong\obj\Debug\BoNuong.csproj.AssemblyReference.cache
 D:\BoNuong\BoNuong\obj\Debug\BoNuong.csproj.AssemblyReference.cache
+C:\Users\apple\source\repos\BoNuong\BoNuong\obj\Debug\BoNuong.csproj.AssemblyReference.cache
