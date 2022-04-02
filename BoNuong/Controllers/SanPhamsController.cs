@@ -123,7 +123,7 @@ namespace BoNuong.Controllers
             {
                 db.SanPham.Add(sanPham);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Create");
             }
 
             ViewBag.MaLoai = new SelectList(db.LoaiSP, "MaLoai", "TenLoai", sanPham.MaLoai);
