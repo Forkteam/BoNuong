@@ -17,14 +17,15 @@ namespace BoNuong.Controllers
         private ApplicationDbContext data = new ApplicationDbContext();
 
         // GET: BinhLuans
-        public ActionResult Index(int? page)
+        public ActionResult Index(int? page, string searchString)
         {
             if (!AuthAdmin())
                 return RedirectToAction("Error401", "Admin");
-            var all_loaiSP = db.BinhLuan.ToList();
+            ViewBag.Keyword = searchString;
+            var all_loaiSP = (from s in db.BinhLuan select s).OrderBy(m => m.NgayTao);
             int pageSize = 10;
             int pageNum = page ?? 1;
-            return View(all_loaiSP.ToPagedList(pageNum, pageSize));
+            return View(BinhLuan.getAll(searchString).ToPagedList(pageNum, pageSize));
         }
 
         // GET: BinhLuans/Details/5
