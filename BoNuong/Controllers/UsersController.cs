@@ -19,14 +19,8 @@ namespace BoNuong.Controllers
         [Authorize]
         public ActionResult Index(int? page)
         {
-            var user = db.Users.FirstOrDefault(u => u.UserName == User.Identity.Name);
-            //if (user == null)
-            //    return RedirectToAction("Error401", "Admin");
-            //var userExist = user.Roles.FirstOrDefault(r => r.UserId == user.Id);
-            //if (userExist == null)
-            //    return RedirectToAction("Error401", "Admin");
-            //if (userExist.RoleId != "1")
-            //    return RedirectToAction("Error401", "Admin");
+            if (!AuthAdmin())
+                return RedirectToAction("Error401", "Admin");
             var all_user = db.Users.Where(u => u.Roles.FirstOrDefault(r => r.UserId == u.Id).RoleId != "1").ToList();
             int pageSize = 10;
             int pageNum = page ?? 1;
@@ -36,6 +30,8 @@ namespace BoNuong.Controllers
         // GET: Users/Details/5
         public ActionResult Details(string id)
         {
+            if (!AuthAdmin())
+                return RedirectToAction("Error401", "Admin");
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -51,6 +47,8 @@ namespace BoNuong.Controllers
         // GET: Users/Create
         public ActionResult Create()
         {
+            if (!AuthAdmin())
+                return RedirectToAction("Error401", "Admin");
             return View();
         }
 
@@ -61,6 +59,8 @@ namespace BoNuong.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,Name,Address,Email,EmailConfirmed,PasswordHash,SecurityStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,UserName")] ApplicationUser applicationUser)
         {
+            if (!AuthAdmin())
+                return RedirectToAction("Error401", "Admin");
             if (ModelState.IsValid)
             {
                 db.Users.Add(applicationUser);
@@ -74,6 +74,8 @@ namespace BoNuong.Controllers
         // GET: Users/Edit/5
         public ActionResult Edit(string id)
         {
+            if (!AuthAdmin())
+                return RedirectToAction("Error401", "Admin");
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -93,6 +95,8 @@ namespace BoNuong.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,Name,Address,Email,EmailConfirmed,PasswordHash,SecurityStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,UserName")] ApplicationUser applicationUser)
         {
+            if (!AuthAdmin())
+                return RedirectToAction("Error401", "Admin");
             if (ModelState.IsValid)
             {
                 db.Entry(applicationUser).State = EntityState.Modified;
@@ -105,6 +109,8 @@ namespace BoNuong.Controllers
         // GET: Users/Delete/5
         public ActionResult Delete(string id)
         {
+            if (!AuthAdmin())
+                return RedirectToAction("Error401", "Admin");
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -122,6 +128,8 @@ namespace BoNuong.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
         {
+            if (!AuthAdmin())
+                return RedirectToAction("Error401", "Admin");
             ApplicationUser applicationUser = db.Users.Find(id);
             db.Users.Remove(applicationUser);
             db.SaveChanges();
@@ -135,6 +143,19 @@ namespace BoNuong.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        public bool AuthAdmin()
+        {
+            var user = db.Users.FirstOrDefault(u => u.UserName == User.Identity.Name);
+            if (user == null)
+                return false;
+            var userExist = user.Roles.FirstOrDefault(r => r.UserId == user.Id);
+            if (userExist == null)
+                return false;
+            if (userExist.RoleId != "1")
+                return false;
+            return true;
         }
     }
 }

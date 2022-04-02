@@ -16,9 +16,9 @@ namespace BoNuong.Controllers
     public class SanPhamsController : Controller
     {
         private BoNuongContext db = new BoNuongContext();
+        private ApplicationDbContext data = new ApplicationDbContext();
 
         // GET: SanPhams
-
         public ActionResult Index(int? page, string searchString)
         {
             ViewBag.Keyword = searchString;
@@ -44,6 +44,8 @@ namespace BoNuong.Controllers
 
         public ActionResult IndexAdmin(int? page)
         {
+            if (!AuthAdmin())
+                return RedirectToAction("Error401", "Admin");
             var all_sanPham = db.SanPham.ToList();
             int pageSize = 5;
             int pageNum = page ?? 1;
@@ -80,6 +82,8 @@ namespace BoNuong.Controllers
         // GET: SanPhams/Details/5 Admin
         public ActionResult DetailsAdmin(int? id)
         {
+            if (!AuthAdmin())
+                return RedirectToAction("Error401", "Admin");
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -111,6 +115,8 @@ namespace BoNuong.Controllers
         // GET: SanPhams/Create
         public ActionResult Create()
         {
+            if (!AuthAdmin())
+                return RedirectToAction("Error401", "Admin");
             ViewBag.MaLoai = new SelectList(db.LoaiSP, "MaLoai", "TenLoai");
             return View();
         }
@@ -122,6 +128,8 @@ namespace BoNuong.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "MaSP,MaLoai,Ten,MoTa,Gia,SoLuong,DonVi,GiamGia,Hinh")] SanPham sanPham)
         {
+            if (!AuthAdmin())
+                return RedirectToAction("Error401", "Admin");
             if (ModelState.IsValid)
             {
                 db.SanPham.Add(sanPham);
@@ -137,6 +145,8 @@ namespace BoNuong.Controllers
         // GET: SanPhams/Edit/5
         public ActionResult Edit(int? id)
         {
+            if (!AuthAdmin())
+                return RedirectToAction("Error401", "Admin");
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -157,6 +167,8 @@ namespace BoNuong.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "MaSP,MaLoai,Ten,MoTa,Gia,SoLuong,DonVi,GiamGia,Hinh")] SanPham sanPham)
         {
+            if (!AuthAdmin())
+                return RedirectToAction("Error401", "Admin");
             if (ModelState.IsValid)
             {
                 db.Entry(sanPham).State = EntityState.Modified;
@@ -171,6 +183,8 @@ namespace BoNuong.Controllers
         // GET: SanPhams/Delete/5
         public ActionResult Delete(int? id)
         {
+            if (!AuthAdmin())
+                return RedirectToAction("Error401", "Admin");
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -188,6 +202,8 @@ namespace BoNuong.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            if (!AuthAdmin())
+                return RedirectToAction("Error401", "Admin");
             SanPham sanPham = db.SanPham.Find(id);
             db.SanPham.Remove(sanPham);
             db.SaveChanges();
@@ -212,6 +228,19 @@ namespace BoNuong.Controllers
             }
             file.SaveAs(Server.MapPath("~/Content/images/" + file.FileName));
             return "/Content/images/" + file.FileName;
+        }
+
+        public bool AuthAdmin()
+        {
+            var user = data.Users.FirstOrDefault(u => u.UserName == User.Identity.Name);
+            if (user == null)
+                return false;
+            var userExist = user.Roles.FirstOrDefault(r => r.UserId == user.Id);
+            if (userExist == null)
+                return false;
+            if (userExist.RoleId != "1")
+                return false;
+            return true;
         }
     }
 }
