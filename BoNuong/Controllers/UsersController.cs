@@ -20,13 +20,13 @@ namespace BoNuong.Controllers
         public ActionResult Index(int? page)
         {
             var user = db.Users.FirstOrDefault(u => u.UserName == User.Identity.Name);
-            if (user == null)
-                return RedirectToAction("Error401", "Admin");
-            var userExist = user.Roles.FirstOrDefault(r => r.UserId == user.Id);
-            if (userExist == null)
-                return RedirectToAction("Error401", "Admin");
-            if (userExist.RoleId != "1")
-                return RedirectToAction("Error401", "Admin");
+            //if (user == null)
+            //    return RedirectToAction("Error401", "Admin");
+            //var userExist = user.Roles.FirstOrDefault(r => r.UserId == user.Id);
+            //if (userExist == null)
+            //    return RedirectToAction("Error401", "Admin");
+            //if (userExist.RoleId != "1")
+            //    return RedirectToAction("Error401", "Admin");
             var all_user = db.Users.Where(u => u.Roles.FirstOrDefault(r => r.UserId == u.Id).RoleId != "1").ToList();
             int pageSize = 10;
             int pageNum = page ?? 1;
