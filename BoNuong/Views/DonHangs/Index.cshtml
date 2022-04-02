@@ -48,7 +48,7 @@
                         <!--</td>-->
                         @using (Html.BeginForm("EditTT", "DonHangs", new { @id = item.MaDH }))
                         {
-                            <td class="checkbox">
+                            <td class="checkbox" style="display: flex; justify-content: space-between;">
                                 <select class="list-box tri-state" id="item_TrangThaiGiaoHang" name="item.TrangThaiGiaoHang">
                                     @if (item.TrangThaiGiaoHang == true)
                                     {
