@@ -7,7 +7,7 @@
 
 <div id="layoutSidenav_content">
     <main>
-        <div class="container-fluid px-4">
+        <div class="container-fluid px-4" style=" margin-top:20px;">
 
             <h2>Thông tin chi tiết</h2>
 
@@ -62,8 +62,10 @@
                 </dl>
             </div>
             <p>
-                @Html.ActionLink("Sửa", "Edit", new { id = Model.MaDH }) |
-                @Html.ActionLink("Trở về", "Index")
+                @Html.ActionLink("Sửa", "Edit", new { id = Model.MaDH }, new { @class = "btn btn-warning" }) 
+                <a class="btn btn-warning" href='@Url.Action("Index", "DonHangs")' style="margin:10px 0px;">
+                    Trở về
+                </a>
             </p>
         </div>
     </main>
