@@ -24,7 +24,7 @@ namespace BoNuong.Controllers
             ViewBag.Keyword = searchString;
             var loaiSP = db.LoaiSP.ToList();
             //if (page == null) page = 1;
-            var all_sanPham = (from s in db.SanPham select s).OrderBy(m => m.MaSP);
+            //var all_sanPham = (from s in db.SanPham select s).OrderBy(m => m.MaSP);
             int pageSize = 12;
             int pageNum = page ?? 1;
             SanPhamViewModel sp = new SanPhamViewModel
