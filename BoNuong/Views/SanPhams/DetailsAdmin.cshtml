@@ -14,9 +14,9 @@
             <div>
                 <h4>Sản phẩm</h4>
                 <hr />
-                <dl class="dl-horizontal">
+                <dl class="dl-horizontal" style="margin-left:20px">
                     <dt>
-                        Tên loại
+                        Loại
                     </dt>
 
                     <dd>
@@ -82,8 +82,10 @@
                 </dl>
             </div>
             <p>
-                @Html.ActionLink("Sửa", "Edit", new { id = Model.MaSP }) |
-                @Html.ActionLink("Trở về", "IndexAdmin")
+                @Html.ActionLink("Sửa", "Edit", new { id = Model.MaSP }, new { @class = "btn btn-info" }) |
+                <a class="btn btn-success" href='@Url.Action("IndexAdmin", "SanPhams")' style="margin:10px 0px;">
+                    Trở về
+                </a>
             </p>
         </div>
     </main>

@@ -48,7 +48,7 @@ namespace BoNuong.Controllers
         }
 
         // GET: SanPhams/Details/5
-        public ActionResult Details(int? id,int? page)
+        public ActionResult Details(int? id, int? page)
         {
             if (id == null)
             {
@@ -123,7 +123,7 @@ namespace BoNuong.Controllers
             {
                 db.SanPham.Add(sanPham);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Create");
             }
 
             ViewBag.MaLoai = new SelectList(db.LoaiSP, "MaLoai", "TenLoai", sanPham.MaLoai);

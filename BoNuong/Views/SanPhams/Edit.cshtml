@@ -79,18 +79,20 @@
                     <div class="form-group">
                         <strong class="control-label col-md-2">Hình</strong>
                         <div class="col-md-10">
-                            @Html.EditorFor(model => model.Hinh, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Hinh, "", new { @class = "text-danger" })
+                            <div style="display:none;">
+                                @Html.EditorFor(model => model.Hinh, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Hinh, "", new { @class = "text-danger" })
+                            </div>
+                            <img src="@Model.Hinh" id="pictureUpload" width="250" />
                             <input type="file" name="fileUpload" id="fileUpload" accept="image/*" style="display:none;" />
                             <input type="button" id="btnUpload" value="Chọn" class="btn btn-success" />
-                            <img src="@Model.Hinh" id="pictureUpload" width="250" />
-                        </div>
+                        </div>                        
                     </div>
-
-                    <div class="form-group">
-                        <div class="col-md-offset-2 col-md-10">
-                            <input type="submit" value="Chỉnh sửa" class="btn btn-default" />
-                        </div>
+                    <div class="col-md-offset-2 col-md-10" style="margin-bottom:15px">
+                        <input type="submit" value="Lưu" class="btn btn-info" /> |
+                        <a class="btn btn-success" href='@Url.Action("IndexAdmin", "SanPhams")' style="margin: 30px 0;">
+                            Trở về
+                        </a>
                     </div>
                 </div>
             }
@@ -129,10 +131,6 @@
                     });
                 </script>
             }
-
-            <div>
-                @Html.ActionLink("Trở về", "IndexAdmin")
-            </div>
         </div>
     </main>
 </div>

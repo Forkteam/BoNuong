@@ -565,7 +565,6 @@
     <Content Include="bin\roslyn\vbc.exe.config" />
     <Content Include="bin\roslyn\vbc.rsp" />
     <Content Include="bin\roslyn\VBCSCompiler.exe.config" />
-    <Content Include="BoNuong.zip" />
     <None Include="Models\LinQ\MyData.dbml.layout">
       <DependentUpon>MyData.dbml</DependentUpon>
     </None>
