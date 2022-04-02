@@ -144,5 +144,39 @@ namespace BoNuong.Controllers
             }
             base.Dispose(disposing);
         }
+
+        public ActionResult DoanhThu(int? page)
+        {
+            var ngayDat = data.DonHangs.Select(d => d.NgayDat).ToArray();
+            var thangNam = new List<DateTime>
+            {
+                ngayDat[0].Value
+            };
+            for (var i = 1; i < ngayDat.Length; i++)
+            {
+                for (var j = 0; j < thangNam.Count; j++)
+                {
+                    if (thangNam[j].Month != ngayDat[i].Value.Month || thangNam[j].Year != ngayDat[i].Value.Year)
+                        thangNam.Add(ngayDat[i].Value);
+                }
+            }
+            var result = new List<double>();
+            double total = 0;
+            for (var i = 0; i < thangNam.Count; i++)
+            {
+                var tienThang = data.DonHangs.Where(d => thangNam[i].Month == d.NgayDat.Value.Month && thangNam[i].Year == d.NgayDat.Value.Year).Select(d => d.TongTien).Sum();
+                result.Add((double)tienThang);
+                total += (double)tienThang;
+            }
+            int pageSize = 10;
+            int pageNum = page ?? 1;
+            var viewModel = new DoanhThuViewModel()
+            {
+                ThangNam = (PagedList<DateTime>)thangNam.ToPagedList(pageNum, pageSize),
+                Result = result,
+                Total = total
+            };
+            return View(viewModel);
+        }
     }
 }
