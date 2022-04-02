@@ -9,55 +9,57 @@
 <div id="layoutSidenav_content">
     <main>
         <div class="container-fluid px-4">
-            <h2>Danh sách đơn hàng</h2>
+            <h2 style=" margin-top:20px;">Danh sách đơn hàng</h2>
 
             @*<p>
                 @Html.ActionLink("Tạo đơn hàng mới", "Create")
             </p>*@
-            <table class="table">
-                <tr>
-                    <th>
-                        Trạng thái giao hàng
-                    </th>
-                    <th>
-                        Ngày đặt
-                    </th>
-                    <th>
-                        Ngày giao
-                    </th>
-                    <th>
-                        Email
-                    </th>
-                    <th>
-                        Thao tác
-                    </th>
-                </tr>
-
-                @foreach (var item in Model)
-                {
+            <table class="table table-bordered table-dark">
+                <thead class="thead-dark">
                     <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.TrangThaiGiaoHang)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.NgayDat)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.NgayGiao)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.AspNetUser.Email)
-                        </td>
-                        <td>
-                            @Html.ActionLink("Sửa", "Edit", new { id = item.MaDH }) |
-                            @Html.ActionLink("Chi tiết", "Details", new { id = item.MaDH }) |
-                            @Html.ActionLink("Xóa", "Delete", new { id = item.MaDH })
-                        </td>
+                        <th>
+                            Trạng thái giao hàng
+                        </th>
+                        <th>
+                            Ngày đặt
+                        </th>
+                        <th>
+                            Ngày giao
+                        </th>
+                        <th>
+                            Email
+                        </th>
+                        <th>
+                            Thao tác
+                        </th>
                     </tr>
-                }
-
-            </table>
-            <div>
+                </thead>
+                <tbody class="table-light">
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TrangThaiGiaoHang)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.NgayDat)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.NgayGiao)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.AspNetUser.Email)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Sửa", "Edit", new { id = item.MaDH }, new { @class = "btn btn-info" }) 
+                                @Html.ActionLink("Chi tiết", "Details", new { id = item.MaDH }, new { @class = "btn btn-warning", @style = "margin-left:5px" }) 
+                                @Html.ActionLink("Xóa", "Delete", new { id = item.MaDH }, new { @class = "btn btn-danger", @style = "margin-left:5px" })
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+</table>
+            <div style=" margin-bottom:50px;">
                 <div>
                     Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
                 </div>

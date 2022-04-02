@@ -9,7 +9,7 @@
     <main>
         <div class="container-fluid px-4">
 
-            <h2>Sửa đơn hàng</h2>
+            <h2 style=" margin-top:20px;">Sửa đơn hàng</h2>
 
             @using (Html.BeginForm())
             {
@@ -25,7 +25,7 @@
                         <strong class="control-label col-md-2">Trạng thái giao hàng</strong>
                         <div class="col-md-10">
                             <div class="checkbox">
-                                @Html.EditorFor(model => model.TrangThaiGiaoHang)
+                                @Html.EditorFor(model => model.TrangThaiGiaoHang, new { htmlAttributes = new { @class = "form-control" } })
                                 @Html.ValidationMessageFor(model => model.TrangThaiGiaoHang, "", new { @class = "text-danger" })
                             </div>
                         </div>
@@ -50,22 +50,21 @@
                     <div class="form-group">
                         <strong class="control-label col-md-2">Khách hàng</strong>
                         <div class="col-md-10">
-                            @Html.DropDownList("MaKH", null, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.DropDownList("MaKH", null, new { @class = "form-control" })
                             @Html.ValidationMessageFor(model => model.MaKH, "", new { @class = "text-danger" })
                         </div>
                     </div>
 
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-10">
-                            <input type="submit" value="Chỉnh sửa" class="btn btn-default" />
+                            <input type="submit" value="Cập nhật" class="btn btn-info" />
+                            <a class="btn btn-info" href='@Url.Action("Index", "DonHangs")' style="margin:10px 0px;">
+                                Trở về
+                            </a>
                         </div>
                     </div>
                 </div>
             }
-
-            <div>
-                @Html.ActionLink("Trở về", "Index")
-            </div>
         </div>
     </main>
 </div>
