@@ -22,7 +22,7 @@ namespace BoNuong.Controllers
             if (!AuthAdmin())
                 return RedirectToAction("Error401", "Admin");
             ViewBag.Keyword = searchString;
-            var all_loaiSP = (from s in db.BinhLuan select s).OrderBy(m => m.NgayTao);
+            //var all_loaiSP = (from s in db.BinhLuan select s).OrderBy(m => m.NgayTao);
             int pageSize = 10;
             int pageNum = page ?? 1;
             return View(BinhLuan.getAll(searchString).ToPagedList(pageNum, pageSize));
