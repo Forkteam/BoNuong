@@ -16,10 +16,13 @@ namespace BoNuong.Controllers
     {
         private BoNuongContext db = new BoNuongContext();
         private MyDataDataContext data = new MyDataDataContext();
+        private ApplicationDbContext dataUser = new ApplicationDbContext();
 
         // GET: DonHangs
         public ActionResult Index(int? page)
         {
+            if (!AuthAdmin())
+                return RedirectToAction("Error401", "Admin");
             var all_donHang = data.DonHangs.ToList();
             int pageSize = 10;
             int pageNum = page ?? 1;
@@ -29,6 +32,8 @@ namespace BoNuong.Controllers
         // GET: DonHangs/Details/5
         public ActionResult Details(int? id)
         {
+            if (!AuthAdmin())
+                return RedirectToAction("Error401", "Admin");
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -44,6 +49,8 @@ namespace BoNuong.Controllers
         // GET: DonHangs/Create
         public ActionResult Create()
         {
+            if (!AuthAdmin())
+                return RedirectToAction("Error401", "Admin");
             ViewBag.MaKH = new SelectList(data.AspNetUsers, "Id", "Email");
             return View();
         }
@@ -55,6 +62,8 @@ namespace BoNuong.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "MaDH,TrangThaiGiaoHang,NgayDat,NgayGiao,MaKH")] Models.DonHang donHang)
         {
+            if (!AuthAdmin())
+                return RedirectToAction("Error401", "Admin");
             if (ModelState.IsValid)
             {
                 db.DonHang.Add(donHang);
@@ -67,6 +76,8 @@ namespace BoNuong.Controllers
 
         public ActionResult EditTT(int id, FormCollection collection)
         {
+            if (!AuthAdmin())
+                return RedirectToAction("Error401", "Admin");
             Models.DonHang donHang = db.DonHang.Find(id);
             if (donHang != null)
             {
@@ -81,6 +92,8 @@ namespace BoNuong.Controllers
         // GET: DonHangs/Edit/5
         public ActionResult Edit(int? id)
         {
+            if (!AuthAdmin())
+                return RedirectToAction("Error401", "Admin");
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -101,6 +114,8 @@ namespace BoNuong.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "MaDH,TrangThaiGiaoHang,NgayDat,NgayGiao,MaKH")] Models.DonHang donHang)
         {
+            if (!AuthAdmin())
+                return RedirectToAction("Error401", "Admin");
             if (ModelState.IsValid)
             {
                 db.Entry(donHang).State = EntityState.Modified;
@@ -113,6 +128,8 @@ namespace BoNuong.Controllers
         // GET: DonHangs/Delete/5
         public ActionResult Delete(int? id)
         {
+            if (!AuthAdmin())
+                return RedirectToAction("Error401", "Admin");
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -130,6 +147,8 @@ namespace BoNuong.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            if (!AuthAdmin())
+                return RedirectToAction("Error401", "Admin");
             Models.DonHang donHang = db.DonHang.Find(id);
             db.DonHang.Remove(donHang);
             db.SaveChanges();
@@ -147,6 +166,8 @@ namespace BoNuong.Controllers
 
         public ActionResult DoanhThu(int? page)
         {
+            if (!AuthAdmin())
+                return RedirectToAction("Error401", "Admin");
             var ngayDat = data.DonHangs.Select(d => d.NgayDat).ToArray();
             var thangNam = new List<DateTime>
             {
@@ -177,6 +198,19 @@ namespace BoNuong.Controllers
                 Total = total
             };
             return View(viewModel);
+        }
+
+        public bool AuthAdmin()
+        {
+            var user = dataUser.Users.FirstOrDefault(u => u.UserName == User.Identity.Name);
+            if (user == null)
+                return false;
+            var userExist = user.Roles.FirstOrDefault(r => r.UserId == user.Id);
+            if (userExist == null)
+                return false;
+            if (userExist.RoleId != "1")
+                return false;
+            return true;
         }
     }
 }
