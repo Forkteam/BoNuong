@@ -204,8 +204,8 @@ namespace BoNuong.Controllers
             {
                 return "";
             }
-            file.SaveAs(Server.MapPath("~/Content/img/" + file.FileName));
-            return "/Content/img/" + file.FileName;
+            file.SaveAs(Server.MapPath("~/Content/images/" + file.FileName));
+            return "/Content/images/" + file.FileName;
         }
     }
 }
