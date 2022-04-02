@@ -1,4 +1,6 @@
-﻿using System.Data.Entity;
+﻿using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
@@ -11,6 +13,12 @@ namespace BoNuong.Models
     {
         public string Name { get; set; }
         public string Address { get; set; }
+        public static List<ApplicationUser> getAll(string searchKey)
+        {
+            ApplicationDbContext db = new ApplicationDbContext();
+            searchKey = searchKey + "";
+            return db.Users.Where(p => p.Email.Contains(searchKey)).ToList();
+        }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
