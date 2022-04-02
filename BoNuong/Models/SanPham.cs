@@ -51,7 +51,7 @@ namespace BoNuong.Models
         {
             BoNuongContext db = new BoNuongContext();
             searchKey = searchKey + "";
-            return db.SanPham.Where(p => p.Ten.Contains(searchKey)).ToList();
+            return db.SanPham.Where(p => p.Ten.Contains(searchKey) && p.SoLuong > 0).ToList();
         }
         public virtual LoaiSP LoaiSP { get; set; }
     }
