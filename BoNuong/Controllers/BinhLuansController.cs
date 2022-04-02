@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using BoNuong.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
+using PagedList;
 
 namespace BoNuong.Controllers
 {
@@ -16,12 +17,14 @@ namespace BoNuong.Controllers
         private ApplicationDbContext data = new ApplicationDbContext();
 
         // GET: BinhLuans
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
             if (!AuthAdmin())
                 return RedirectToAction("Error401", "Admin");
-            var binhLuan = db.BinhLuan.Include(b => b.SanPham);
-            return View(binhLuan.ToList());
+            var all_loaiSP = db.BinhLuan.ToList();
+            int pageSize = 10;
+            int pageNum = page ?? 1;
+            return View(all_loaiSP.ToPagedList(pageNum, pageSize));
         }
 
         // GET: BinhLuans/Details/5
