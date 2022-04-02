@@ -108,7 +108,11 @@ namespace BoNuong.Controllers
             GioHang sanPham = lstGioHang.SingleOrDefault(n => n.MaSP == id);
             if (sanPham != null)
             {
-                sanPham.SoLuong = int.Parse(collection["txtSoLg"].ToString());
+                SanPham sp = data.SanPham.FirstOrDefault(s => s.MaSP == id);
+                var soLuong = int.Parse(collection["txtSoLg"].ToString());
+                if (sp.SoLuong < soLuong)
+                    return RedirectToAction("GioHang");
+                sanPham.SoLuong = soLuong;
             }
             return RedirectToAction("GioHang");
         }
@@ -144,7 +148,7 @@ namespace BoNuong.Controllers
         {
             DonHang dh = new DonHang();
             Models.LinQ.AspNetUser kh = (Models.LinQ.AspNetUser)Session["TaiKhoan"];
-            SanPham s = new SanPham();
+            //SanPham s = new SanPham();
             List<GioHang> gh = layGioHang();
             var ngaygiao = String.Format("{0:MM/dd/yyyy}", collection["NgayGiao"]);
             dh.MaKH = kh.Id;
@@ -162,11 +166,12 @@ namespace BoNuong.Controllers
                 ctdh.MaSP = item.MaSP;
                 ctdh.Soluong = item.SoLuong;
                 ctdh.Gia = item.ThanhTien;
-                s = data.SanPham.Single(n => n.MaSP == item.MaSP);
+                SanPham sanPham = data.SanPham.Single(n => n.MaSP == item.MaSP);
+                sanPham.SoLuong -= item.SoLuong;
                 data.SaveChanges();
                 data.ChiTietDonHang.Add(ctdh);
+                data.SaveChanges();
             }
-            data.SaveChanges();
             Session["GioHang"] = null;
             return RedirectToAction("XacNhanDonHang", "GioHang");
         }
