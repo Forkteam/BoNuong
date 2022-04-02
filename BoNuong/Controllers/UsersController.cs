@@ -17,14 +17,15 @@ namespace BoNuong.Controllers
 
         // GET: Users
         [Authorize]
-        public ActionResult Index(int? page)
+        public ActionResult Index(int? page, string searchString)
         {
             if (!AuthAdmin())
                 return RedirectToAction("Error401", "Admin");
-            var all_user = db.Users.Where(u => u.Roles.FirstOrDefault(r => r.UserId == u.Id).RoleId != "1").ToList();
+            ViewBag.Keyword = searchString;
+            //var all_user = db.Users.Where(u => u.Roles.FirstOrDefault(r => r.UserId == u.Id).RoleId != "1").ToList();
             int pageSize = 10;
             int pageNum = page ?? 1;
-            return View(all_user.ToPagedList(pageNum, pageSize));
+            return View(ApplicationUser.getAll(searchString).ToPagedList(pageNum, pageSize));
         }
 
         // GET: Users/Details/5
