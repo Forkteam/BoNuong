@@ -60,8 +60,8 @@ namespace BoNuong
 
             app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             {
-                ClientId = "853606616692-erf1qle3li9d1qpgmdjqq3cij3qkiotj.apps.googleusercontent.com",
-                ClientSecret = "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"
+                ClientId = "920860387044-kr0r2kv9i1ohpcrnic2g21j6m7bocv88.apps.googleusercontent.com",
+                ClientSecret = "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"
             });
         }
     }

@@ -31,9 +31,9 @@
                     !
                 </p>
                 @*<a href="#" class="btn btn-transparent">Get Started</a>
-                    <a class="btn btn-blue popup-youtube" href="https://www.youtube.com/watch?v=Q8TXgCzxEnw">
-                        <i class="material-icons">play_circle_filled</i>Watch Video
-                    </a>*@
+            <a class="btn btn-blue popup-youtube" href="https://www.youtube.com/watch?v=Q8TXgCzxEnw">
+                <i class="material-icons">play_circle_filled</i>Watch Video
+            </a>*@
             </div>
             @*Sign Up*@
             @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form", @style = "width:500px" }))
@@ -50,14 +50,10 @@
                         <div class="form-group">
                             @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "Mật khẩu", @style = "height:50px" })
                         </div>
-                        @*<div class="form-group">
-                        <div class="col-md-offset-2 col-md-10">
-                            <div class="checkbox">
-                                @Html.CheckBoxFor(m => m.RememberMe)
-                                @Html.LabelFor(m => m.RememberMe)
-                            </div>
+                        <div class="form-group" style="display: flex; align-items: center;">
+                            @Html.CheckBoxFor(m => m.RememberMe)
+                            @Html.LabelFor(m => m.RememberMe, new { @style = "margin-bottom: unset;margin-left: 10px;font-size:11px;font-weight: 500;" })
                         </div>
-                    </div>*@
                         <div class="form-group">
                             <input type="submit" class="btn btn-blue btn-block" value="Đăng nhập" style="background-color: #44c5ee;" />
                         </div>
