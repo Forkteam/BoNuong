@@ -100,7 +100,13 @@ namespace BoNuong.Controllers
                 return RedirectToAction("Error401", "Admin");
             if (ModelState.IsValid)
             {
-                db.Entry(applicationUser).State = EntityState.Modified;
+                //db.Entry(applicationUser).State = EntityState.Modified;
+                ApplicationUser user = db.Users.FirstOrDefault(u => u.UserName == applicationUser.UserName);
+                user.Name = applicationUser.Name;
+                user.Address = applicationUser.Address;
+                user.Email = applicationUser.Email;
+                user.PhoneNumber = applicationUser.PhoneNumber;
+                user.LockoutEnabled = applicationUser.LockoutEnabled;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

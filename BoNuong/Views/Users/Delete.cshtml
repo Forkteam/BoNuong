@@ -56,69 +56,77 @@
                         @Html.DisplayFor(model => model.UserName)
                     </dd>
 
+                    <dt>
+                        Kích hoạt
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.LockoutEnabled)
+                    </dd>
+
                     @*<dt>
-                 @Html.DisplayNameFor(model => model.EmailConfirmed)
-             </dt>
+             @Html.DisplayNameFor(model => model.EmailConfirmed)
+         </dt>
 
-             <dd>
-                 @Html.DisplayFor(model => model.EmailConfirmed)
-             </dd>
+         <dd>
+             @Html.DisplayFor(model => model.EmailConfirmed)
+         </dd>
 
-            <dt>
-                 @Html.DisplayNameFor(model => model.PasswordHash)
-             </dt>
+        <dt>
+             @Html.DisplayNameFor(model => model.PasswordHash)
+         </dt>
 
-             <dd>
-                 @Html.DisplayFor(model => model.PasswordHash)
-             </dd>
+         <dd>
+             @Html.DisplayFor(model => model.PasswordHash)
+         </dd>
 
-             <dt>
-                 @Html.DisplayNameFor(model => model.SecurityStamp)
-             </dt>
+         <dt>
+             @Html.DisplayNameFor(model => model.SecurityStamp)
+         </dt>
 
-             <dd>
-                 @Html.DisplayFor(model => model.SecurityStamp)
-             </dd>
+         <dd>
+             @Html.DisplayFor(model => model.SecurityStamp)
+         </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.PhoneNumberConfirmed)
-            </dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.PhoneNumberConfirmed)
+        </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.PhoneNumberConfirmed)
-            </dd>
+        <dd>
+            @Html.DisplayFor(model => model.PhoneNumberConfirmed)
+        </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.TwoFactorEnabled)
-            </dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.TwoFactorEnabled)
+        </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.TwoFactorEnabled)
-            </dd>
+        <dd>
+            @Html.DisplayFor(model => model.TwoFactorEnabled)
+        </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.LockoutEndDateUtc)
-            </dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.LockoutEndDateUtc)
+        </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.LockoutEndDateUtc)
-            </dd>
+        <dd>
+            @Html.DisplayFor(model => model.LockoutEndDateUtc)
+        </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.LockoutEnabled)
-            </dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.LockoutEnabled)
+        </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.LockoutEnabled)
-            </dd>
+        <dd>
+            @Html.DisplayFor(model => model.LockoutEnabled)
+        </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.AccessFailedCount)
-            </dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.AccessFailedCount)
+        </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.AccessFailedCount)
-            </dd>*@
+        <dd>
+            @Html.DisplayFor(model => model.AccessFailedCount)
+        </dd>*@
 
                 </dl>
 
@@ -127,8 +135,8 @@
                     @Html.AntiForgeryToken()
 
                     <div class="form-actions no-color">
-                        <input type="submit" value="Xóa khách hàng" class="btn btn-info" /> |
-                        <a class="btn btn-info" href='@Url.Action("Index", "User")' style="margin:10px 0px;">
+                        <input type="submit" value="Xóa khách hàng" class="btn btn-danger" /> |
+                        <a class="btn btn-danger" href='@Url.Action("Index", "Users")' style="margin:10px 0px;">
                             Trở về
                         </a>
                     </div>

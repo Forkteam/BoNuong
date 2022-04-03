@@ -54,6 +54,14 @@
                         @Html.DisplayFor(model => model.UserName)
                     </dd>
 
+                    <dt>
+                        Kích hoạt
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.LockoutEnabled)
+                    </dd>
+
                     @*<dt>
              @Html.DisplayNameFor(model => model.EmailConfirmed)
          </dt>
@@ -103,14 +111,6 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.LockoutEnabled)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.LockoutEnabled)
-        </dd>
-
-        <dt>
             @Html.DisplayNameFor(model => model.AccessFailedCount)
         </dt>
 
@@ -122,7 +122,7 @@
             </div>
             <p>
                 @Html.ActionLink("Chỉnh sửa", "Edit", new { id = Model.Id }, new { @class = "btn btn-info"}) |
-                <a class="btn btn-info" href='@Url.Action("Index", "User")' style="margin:10px 0px;">
+                <a class="btn btn-info" href='@Url.Action("Index", "Users")' style="margin:10px 0px;">
                     Trở về
                 </a>
             </p>

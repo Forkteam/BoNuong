@@ -53,13 +53,38 @@
                             </div>
                         </div>
 
-                        @*<div class="form-group">
-                        <strong class="control-label col-md-2">Tên đăng nhập</strong>
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            <strong class="control-label col-md-2">Kích hoạt</strong>
+                            <div class="col-md-10">
+                                <div class="checkbox">
+                                    @Html.EditorFor(model => model.LockoutEnabled)
+                                    @Html.ValidationMessageFor(model => model.LockoutEnabled, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
                         </div>
-                    </div>*@
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                <input class="form-control text-box single-line" id="UserName" name="UserName" type="text" value="@Model.UserName">
+                                <span class="field-validation-valid text-danger" data-valmsg-for="UserName" data-valmsg-replace="true">Không thể thay đổi username</span>
+                            </div>
+                        </div>
+                        @*<div class="form-group">
+                            @Html.LabelFor(model => model.PasswordHash, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.PasswordHash, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.PasswordHash, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.SecurityStamp, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.SecurityStamp, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.SecurityStamp, "", new { @class = "text-danger" })
+                            </div>
+                        </div>*@
 
                         @*<div class="form-group">
                         @Html.LabelFor(model => model.EmailConfirmed, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -68,22 +93,6 @@
                                 @Html.EditorFor(model => model.EmailConfirmed)
                                 @Html.ValidationMessageFor(model => model.EmailConfirmed, "", new { @class = "text-danger" })
                             </div>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.PasswordHash, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.PasswordHash, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.PasswordHash, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.SecurityStamp, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.SecurityStamp, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.SecurityStamp, "", new { @class = "text-danger" })
                         </div>
                     </div>
 
@@ -116,16 +125,6 @@
                     </div>
 
                     <div class="form-group">
-                        @Html.LabelFor(model => model.LockoutEnabled, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            <div class="checkbox">
-                                @Html.EditorFor(model => model.LockoutEnabled)
-                                @Html.ValidationMessageFor(model => model.LockoutEnabled, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
                         @Html.LabelFor(model => model.AccessFailedCount, htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
                             @Html.EditorFor(model => model.AccessFailedCount, new { htmlAttributes = new { @class = "form-control" } })
@@ -135,7 +134,7 @@
 
                         <div class="form-group">
                             <div class="col-md-offset-2 col-md-10">
-                                <input type="submit" value="Lưu" class="btn btn-info" /> |  <a class="btn btn-info" href='@Url.Action("Index", "User")' style="margin:10px 0px;">
+                                <input type="submit" value="Lưu" class="btn btn-info" /> |  <a class="btn btn-info" href='@Url.Action("Index", "Users")' style="margin:10px 0px;">
                                     Trở về
                                 </a>
                             </div>
