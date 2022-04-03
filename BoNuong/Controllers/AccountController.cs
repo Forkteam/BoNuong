@@ -86,6 +86,8 @@ namespace BoNuong.Controllers
                 case SignInStatus.Success:
                     {
                         var kh = context.AspNetUsers.Where(p => p.Email == model.Email).FirstOrDefault();
+                        if (kh.LockoutEnabled == true)
+                            return View("Lockout");
                         Session["TaiKhoan"] = kh;
                         return RedirectToLocal(returnUrl);
                     }
