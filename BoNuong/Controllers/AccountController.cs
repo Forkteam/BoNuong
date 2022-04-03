@@ -86,7 +86,7 @@ namespace BoNuong.Controllers
                 case SignInStatus.Success:
                     {
                         var kh = context.AspNetUsers.Where(p => p.Email == model.Email).FirstOrDefault();
-                        if (kh.LockoutEnabled == true)
+                        if (kh.LockoutEnabled == false)
                         {
                             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
                             return View("Lockout");
@@ -165,7 +165,7 @@ namespace BoNuong.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, Name = model.Name, Address = model.Address, PhoneNumber = model.PhoneNumber };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, Name = model.Name, Address = model.Address, PhoneNumber = model.PhoneNumber, LockoutEnabled = false };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -381,7 +381,7 @@ namespace BoNuong.Controllers
                 {
                     return View("ExternalLoginFailure");
                 }
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, Name = model.Name, Address = model.Address, PhoneNumber = model.PhoneNumber };
                 var result = await UserManager.CreateAsync(user);
                 if (result.Succeeded)
                 {

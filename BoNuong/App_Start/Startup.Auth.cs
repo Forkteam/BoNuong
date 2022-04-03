@@ -34,7 +34,7 @@ namespace BoNuong
                         validateInterval: TimeSpan.FromMinutes(30),
                         regenerateIdentity: (manager, user) => user.GenerateUserIdentityAsync(manager))
                 }
-            });            
+            });
             app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);
 
             // Enables the application to temporarily store user information when they are verifying the second factor in the two-factor authentication process.
@@ -58,11 +58,11 @@ namespace BoNuong
             //   appId: "",
             //   appSecret: "");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = "920860387044-kr0r2kv9i1ohpcrnic2g21j6m7bocv88.apps.googleusercontent.com",
+                ClientSecret = "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"
+            });
         }
     }
 }
