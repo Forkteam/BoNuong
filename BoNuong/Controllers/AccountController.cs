@@ -86,7 +86,7 @@ namespace BoNuong.Controllers
                 case SignInStatus.Success:
                     {
                         var kh = context.AspNetUsers.Where(p => p.Email == model.Email).FirstOrDefault();
-                        if (kh.LockoutEnabled == true)
+                        if (kh.LockoutEnabled == false)
                         {
                             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
                             return View("Lockout");
