@@ -43,7 +43,13 @@ namespace BoNuong.Controllers
             {
                 return HttpNotFound();
             }
-            return View(donHang);
+            List<Models.LinQ.ChiTietDonHang> ctdh = data.ChiTietDonHangs.Where(c => c.MaDH == donHang.MaDH).ToList();
+            DonHangViewModel donHangViewModel = new DonHangViewModel()
+            {
+                DonHang = donHang,
+                CTDH = ctdh
+            };
+            return View(donHangViewModel);
         }
 
         // GET: DonHangs/Create
