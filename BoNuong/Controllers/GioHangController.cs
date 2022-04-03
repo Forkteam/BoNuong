@@ -17,10 +17,7 @@ namespace BoNuong.Controllers
             List<GioHang> lstGioHang = Session["GioHang"] as List<GioHang>;
             if (lstGioHang == null)
             {
-
                 lstGioHang = new List<GioHang>();
-                
-               
                 Session["GioHang"] = lstGioHang;
             }
             return lstGioHang;
@@ -111,7 +108,11 @@ namespace BoNuong.Controllers
             GioHang sanPham = lstGioHang.SingleOrDefault(n => n.MaSP == id);
             if (sanPham != null)
             {
-                sanPham.SoLuong = int.Parse(collection["txtSoLg"].ToString());
+                SanPham sp = data.SanPham.FirstOrDefault(s => s.MaSP == id);
+                var soLuong = int.Parse(collection["txtSoLg"].ToString());
+                if (sp.SoLuong < soLuong)
+                    return RedirectToAction("GioHang");
+                sanPham.SoLuong = soLuong;
             }
             return RedirectToAction("GioHang");
         }
@@ -122,15 +123,19 @@ namespace BoNuong.Controllers
             lstGioHang.Clear();
             return RedirectToAction("GioHang");
         }
+
+
+        //Dặt hàng
+        [HttpGet]
         public ActionResult DatHang()
         {
             if (Session["TaiKhoan"] == null || Session["TaiKhoan"].ToString() == "")
             {
-                return RedirectToAction("DangNhap", "NguoiDung");
+                return RedirectToAction("Login", "Account");
             }
             if (Session["GioHang"] == null)
             {
-                return RedirectToAction("Index", "Sach");
+                return RedirectToAction("Index", "SanPhams");
             }
 
             List<GioHang> lstGioHang = layGioHang();
@@ -138,6 +143,42 @@ namespace BoNuong.Controllers
             ViewBag.TongTien = TongTien();
             ViewBag.TongSoLuongSanPham = TongSoLuongSanPham();
             return View(lstGioHang);
+        }
+        public ActionResult DatHang(FormCollection collection)
+        {
+            DonHang dh = new DonHang();
+            Models.LinQ.AspNetUser kh = (Models.LinQ.AspNetUser)Session["TaiKhoan"];
+            //SanPham s = new SanPham();
+            List<GioHang> gh = layGioHang();
+            var ngaygiao = String.Format("{0:MM/dd/yyyy}", collection["NgayGiao"]);
+            dh.MaKH = kh.Id;
+            dh.NgayDat = DateTime.Now;
+            dh.NgayGiao = DateTime.Parse(ngaygiao);
+            dh.TrangThaiGiaoHang = false;
+            dh.TongTien = TongTien();
+
+            data.DonHang.Add(dh);
+            data.SaveChanges();
+            foreach (var item in gh)
+            {
+                ChiTietDonHang ctdh = new ChiTietDonHang();
+                ctdh.MaDH = dh.MaDH;
+                ctdh.MaSP = item.MaSP;
+                ctdh.Soluong = item.SoLuong;
+                ctdh.Gia = item.ThanhTien;
+                SanPham sanPham = data.SanPham.Single(n => n.MaSP == item.MaSP);
+                sanPham.SoLuong -= item.SoLuong;
+                data.SaveChanges();
+                data.ChiTietDonHang.Add(ctdh);
+                data.SaveChanges();
+            }
+            Session["GioHang"] = null;
+            return RedirectToAction("XacNhanDonHang", "GioHang");
+        }
+
+        public ActionResult XacNhanDonHang()
+        {
+            return View();
         }
     }
 }

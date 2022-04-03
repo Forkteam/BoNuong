@@ -7,22 +7,32 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using BoNuong.Models;
+using PagedList;
 
 namespace BoNuong.Controllers
 {
     public class LoaiSPsController : Controller
     {
         private BoNuongContext db = new BoNuongContext();
+        private ApplicationDbContext data = new ApplicationDbContext();
 
         // GET: LoaiSPs
-        public ActionResult Index()
+        public ActionResult Index(int? page, string searchString)
         {
-            return View(db.LoaiSP.ToList());
+            if (!AuthAdmin())
+                return RedirectToAction("Error401", "Admin");
+            ViewBag.Keyword = searchString;
+            //var all_loaiSP = db.LoaiSP.ToList();
+            int pageSize = 10;
+            int pageNum = page ?? 1;
+            return View(LoaiSP.getAll(searchString).ToPagedList(pageNum, pageSize));
         }
 
         // GET: LoaiSPs/Details/5
         public ActionResult Details(int? id)
         {
+            if (!AuthAdmin())
+                return RedirectToAction("Error401", "Admin");
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -38,6 +48,8 @@ namespace BoNuong.Controllers
         // GET: LoaiSPs/Create
         public ActionResult Create()
         {
+            if (!AuthAdmin())
+                return RedirectToAction("Error401", "Admin");
             return View();
         }
 
@@ -48,6 +60,8 @@ namespace BoNuong.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "MaLoai,TenLoai")] LoaiSP loaiSP)
         {
+            if (!AuthAdmin())
+                return RedirectToAction("Error401", "Admin");
             if (ModelState.IsValid)
             {
                 db.LoaiSP.Add(loaiSP);
@@ -61,6 +75,8 @@ namespace BoNuong.Controllers
         // GET: LoaiSPs/Edit/5
         public ActionResult Edit(int? id)
         {
+            if (!AuthAdmin())
+                return RedirectToAction("Error401", "Admin");
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -80,6 +96,8 @@ namespace BoNuong.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "MaLoai,TenLoai")] LoaiSP loaiSP)
         {
+            if (!AuthAdmin())
+                return RedirectToAction("Error401", "Admin");
             if (ModelState.IsValid)
             {
                 db.Entry(loaiSP).State = EntityState.Modified;
@@ -92,6 +110,8 @@ namespace BoNuong.Controllers
         // GET: LoaiSPs/Delete/5
         public ActionResult Delete(int? id)
         {
+            if (!AuthAdmin())
+                return RedirectToAction("Error401", "Admin");
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -109,6 +129,8 @@ namespace BoNuong.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            if (!AuthAdmin())
+                return RedirectToAction("Error401", "Admin");
             LoaiSP loaiSP = db.LoaiSP.Find(id);
             db.LoaiSP.Remove(loaiSP);
             db.SaveChanges();
@@ -122,6 +144,19 @@ namespace BoNuong.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        public bool AuthAdmin()
+        {
+            var user = data.Users.FirstOrDefault(u => u.UserName == User.Identity.Name);
+            if (user == null)
+                return false;
+            var userExist = user.Roles.FirstOrDefault(r => r.UserId == user.Id);
+            if (userExist == null)
+                return false;
+            if (userExist.RoleId != "1")
+                return false;
+            return true;
         }
     }
 }

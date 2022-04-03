@@ -5,6 +5,7 @@ namespace BoNuong.Models
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
+    using System.Linq;
 
     [Table("SanPham")]
     public partial class SanPham
@@ -46,7 +47,12 @@ namespace BoNuong.Models
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ChiTietDonHang> ChiTietDonHang { get; set; }
-
+        public static List<SanPham> getAll(string searchKey)
+        {
+            BoNuongContext db = new BoNuongContext();
+            searchKey = searchKey + "";
+            return db.SanPham.Where(p => p.Ten.Contains(searchKey) && p.SoLuong > 0).ToList();
+        }
         public virtual LoaiSP LoaiSP { get; set; }
     }
 }

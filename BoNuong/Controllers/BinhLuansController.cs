@@ -7,23 +7,32 @@ using System.Web.Mvc;
 using BoNuong.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
+using PagedList;
 
 namespace BoNuong.Controllers
 {
     public class BinhLuansController : Controller
     {
         private BoNuongContext db = new BoNuongContext();
+        private ApplicationDbContext data = new ApplicationDbContext();
 
         // GET: BinhLuans
-        public ActionResult Index()
+        public ActionResult Index(int? page, string searchString)
         {
-            var binhLuan = db.BinhLuan.Include(b => b.SanPham);
-            return View(binhLuan.ToList());
+            if (!AuthAdmin())
+                return RedirectToAction("Error401", "Admin");
+            ViewBag.Keyword = searchString;
+            //var all_loaiSP = (from s in db.BinhLuan select s).OrderBy(m => m.NgayTao);
+            int pageSize = 10;
+            int pageNum = page ?? 1;
+            return View(BinhLuan.getAll(searchString).ToPagedList(pageNum, pageSize));
         }
 
         // GET: BinhLuans/Details/5
         public ActionResult Details(int? id)
         {
+            if (!AuthAdmin())
+                return RedirectToAction("Error401", "Admin");
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -73,6 +82,8 @@ namespace BoNuong.Controllers
         // GET: BinhLuans/Edit/5
         public ActionResult Edit(int? id)
         {
+            if (!AuthAdmin())
+                return RedirectToAction("Error401", "Admin");
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -93,6 +104,8 @@ namespace BoNuong.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "MaBinhLuan,NoiDung,MaSP,MaKH,NgayTao")] BinhLuan binhLuan)
         {
+            if (!AuthAdmin())
+                return RedirectToAction("Error401", "Admin");
             if (ModelState.IsValid)
             {
                 db.Entry(binhLuan).State = EntityState.Modified;
@@ -106,6 +119,8 @@ namespace BoNuong.Controllers
         // GET: BinhLuans/Delete/5
         public ActionResult Delete(int? id)
         {
+            if (!AuthAdmin())
+                return RedirectToAction("Error401", "Admin");
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -123,6 +138,8 @@ namespace BoNuong.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            if (!AuthAdmin())
+                return RedirectToAction("Error401", "Admin");
             BinhLuan binhLuan = db.BinhLuan.Find(id);
             db.BinhLuan.Remove(binhLuan);
             db.SaveChanges();
@@ -136,6 +153,19 @@ namespace BoNuong.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        public bool AuthAdmin()
+        {
+            var user = data.Users.FirstOrDefault(u => u.UserName == User.Identity.Name);
+            if (user == null)
+                return false;
+            var userExist = user.Roles.FirstOrDefault(r => r.UserId == user.Id);
+            if (userExist == null)
+                return false;
+            if (userExist.RoleId != "1")
+                return false;
+            return true;
         }
     }
 }
