@@ -12,6 +12,7 @@
             <div>
                 <h4>Đơn hàng</h4>
                 <hr />
+                @Html.ActionLink("Xuất hóa đơn", "Index", "Report", new { id = Model.DonHang.MaDH }, new { @class = "btn btn-success" })
                 <dl class="dl-horizontal" style="display:flex;flex-wrap:wrap">
                     <dt class="col-md-2">
                         Trạng thái giao hàng
