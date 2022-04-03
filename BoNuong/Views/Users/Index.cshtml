@@ -36,7 +36,9 @@
                         <th>
                             Tên đăng nhập
                         </th>
-
+                        <th>
+                            Kích hoạt
+                        </th>
                         <th class="text-center">Thao tác</th>
                     </tr>
                 </thead>
@@ -58,6 +60,9 @@
                             </td>
                             <td style="vertical-align:middle">
                                 @Html.DisplayFor(modelItem => item.UserName)
+                            </td>
+                            <td style="vertical-align:middle">
+                                @Html.DisplayFor(modelItem => item.LockoutEnabled)
                             </td>
 
                             <td>
