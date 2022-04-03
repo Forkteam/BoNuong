@@ -87,7 +87,10 @@ namespace BoNuong.Controllers
                     {
                         var kh = context.AspNetUsers.Where(p => p.Email == model.Email).FirstOrDefault();
                         if (kh.LockoutEnabled == true)
+                        {
+                            AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
                             return View("Lockout");
+                        }
                         Session["TaiKhoan"] = kh;
                         return RedirectToLocal(returnUrl);
                     }
