@@ -174,7 +174,7 @@ namespace BoNuong.Controllers
         {
             if (!AuthAdmin())
                 return RedirectToAction("Error401", "Admin");
-            var ngayDat = data.DonHangs.Select(d => d.NgayDat).ToArray();
+            var ngayDat = data.DonHangs.Select(d => d.NgayDat).Distinct().ToArray();
             var thangNam = new List<DateTime>
             {
                 ngayDat[0].Value
