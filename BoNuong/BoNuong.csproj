@@ -448,6 +448,7 @@
     <Content Include="Content\img\latest-product\lp-1.jpg" />
     <Content Include="Content\img\latest-product\lp-2.jpg" />
     <Content Include="Content\img\latest-product\lp-3.jpg" />
+    <Content Include="Content\img\login-google.jpg" />
     <Content Include="Content\img\logo.png" />
     <Content Include="Content\img\nam-kim-cham-min.png" />
     <Content Include="Content\img\payment-item.png" />
