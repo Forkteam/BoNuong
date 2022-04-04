@@ -55,7 +55,7 @@
                         @using (Html.BeginForm("EditTT", "DonHangs", new { @id = item.MaDH }))
                         {
                             <td class="checkbox" style="display: flex; justify-content: space-between;">
-                                <select class="list-box tri-state" id="item_TrangThaiGiaoHang" name="item.TrangThaiGiaoHang">
+                                <select class="list-box tri-state" id="item.TrangThaiGiaoHang" name="item.TrangThaiGiaoHang">
                                     @if (item.TrangThaiGiaoHang == true)
                                     {
                                         <option selected="selected" value="true">Đã giao</option>
@@ -67,7 +67,7 @@
                                         <option selected="selected" value="false">Chưa giao</option>
                                     }
                                 </select>
-                                <input type="submit" value="Cập nhật" class="btn btn-success" />
+                                @*<input type="submit" value="Cập nhật" class="btn btn-success" />*@
                             </td>
                         }
                         <td>
